@@ -7,7 +7,7 @@
 \RequirePackage[section]{placeins}%Pour placement de section
 \RequirePackage[T1]{fontenc} %Quelques lettres qui sont pas inclus dans UTF-8
 \RequirePackage{mathtools} %Paquet pour des équations et symboles mathématiques
-\RequirePackage{siunitx} %Pour écrire avec la notation scientifique (Ex.: \num{2e+9})
+%\RequirePackage{siunitx} %Pour écrire avec la notation scientifique (Ex.: \num{2e+9})
 \RequirePackage{float} %Pour placement d'images
 \RequirePackage{graphicx} %Paquet pour insérer des images
 \RequirePackage[justification=centering]{caption} %Pour les légendes centralisées
@@ -47,9 +47,9 @@
 \newcommand{\fairepagedegarde}{
 \begin{titlepage}
 
-\ThisLRCornerWallPaper{0.6}{logos/ECC2.jpg}
+\ThisLRCornerWallPaper{0.6}{./images/logo_bckgd.jpg}
 	\centering %Centraliser le contenu
-	\includegraphics[width=0.45\textwidth]{logos/Logo_ECC.png}\par\vspace{1cm} %Insertion du logo
+	\includegraphics[width=0.45\textwidth]{./images/logo_UBS.png}\par\vspace{1cm} %Insertion du logo
 	{\scshape\LARGE Université bretagne sud \par} %Nom de l'université
 	\vspace{1.5cm}%Espace de 1,5cm
 	{\scshape\Large \UE \\ Rapport de travaux pratiques\par} %sous-titre
