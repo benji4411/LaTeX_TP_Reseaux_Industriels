@@ -1,0 +1,93 @@
+\documentclass{rapportECC}
+\usepackage{lipsum}
+\title{Rapport UBS - Reseaux Industriels} %Titre du fichier
+\usepackage{lipsum} 
+\usepackage{biblatex} %Imports biblatex package
+\addbibresource{bibtex.bib} %Import the bibliography file
+\usepackage{appendix} % Package pour gérer les annexes
+\usepackage{url}
+\usepackage{float}
+\begin{document}
+
+%----------- Informations du rapport ---------
+
+\titre{Réseaux Industriels} %Titre du fichier .pdf
+
+\sujet{\LaTeX Approfondi} %Nom du sujet
+
+\Encadrants{Julien \textsc{Delorme} } %Nom de l'enseignant
+
+\eleves{Alexandre \textsc{Perez} \\
+		Benjamin \textsc{Mahoudeau} } %Nom des élèves
+
+%----------- Initialisation -------------------
+        
+\fairemarges %Afficher les marges
+\fairepagedegarde %Créer la page de garde
+\tabledematieres %Créer la table de matières
+
+%------------ Corps du rapport ----------------
+
+
+\section{Introduction} 
+
+\subsection{Contexte et objectifs}
+
+\subsection{Énoncé de la problématique}
+
+\section{TP1: Prise en main de la maquette}
+
+\subsection{Bus CAN de la maquette}
+
+\subsection{Port OBDII}
+Comme décris sur le site https://www.outilsobdfacile.fr/presentation-de-l-obd.php, La norme OBDII a été instaurée à l'origine par la CARB (Californian Air Resources Board) afin de surveiller les émissions polluantes des véhicules.  
+\\
+\\
+L'OBD, requiert que le véhicule surveille de manière continue le bon fonctionnement du moteur tout au long de sa durée de vie.
+\\
+\\
+Il existe plusieurs normes de l'OBD : 
+\begin{itemize}
+    \item L'OBD ou OBDI standardise le connecteur pour assurer son uniformité sur tous les véhicules. En revanche, le protocole de communication demeure plus ou moins spécifique en fonction des marques.
+    \item L'OBDII \ref{fig: Port OBDII} est arrivé en 1996 aux Etats Unis pour spécifier des protocoles communs.
+    \item L'EOBD, pour European OBD, reprenant l'OBDII est spécifique pour les véhicules européens.
+\end{itemize}
+
+
+\section{TP2: Utilisation du logiciel MuxTrace}
+
+\subsection{Etude pratique : régime moteur}
+
+\subsection{Etude pratique : vitesse véhicule}
+
+\subsection{Etude pratique : Comodo de phares}
+
+\subsection{Etude pratique : Rétroviseurs}
+
+\subsection{Etude pratique : Faites votre choix}
+
+\section{TP3: Utilisation du logiciel MuxTrace et DBEdit}
+
+\section{TP4: Utilisation du mode programmation sous MuxTrace}
+
+\subsection{Etude pratique : Chargement d'un exemple}
+
+\subsection{Etude pratique :Création de votre exemple}
+
+\section{Conclusion}
+
+\newpage
+
+
+\printbibliography
+
+% Ajout de l'annexe
+\newpage
+\begin{appendices}
+\section{Annexe : }
+% Ajout d'une image
+\subsection{Illustration complémentaire}
+\insererfigure{logos/port_OBDII.png}{10cm}{Illustartion port OBDII}{Port OBDII}
+\end{appendices}
+
+\end{document}
