@@ -5,7 +5,6 @@
 \usepackage{biblatex} %Imports biblatex package
 \addbibresource{main.bib} %Import the bibliography file
 \usepackage{appendix} % Package pour gérer les annexes
-\usepackage{url}
 \usepackage{float}
 \begin{document}
 
@@ -38,26 +37,43 @@ Le but de ce tp est de mettre en pratique nos connaisances théoriques du bus CA
 
 \subsection{Bus CAN de la maquette}
 
+\subsubsection*{Identifier le nombre de bus CAN présents sur la laquette ainsi que leur vitesse.}
+
+\subsubsection*{Quelles fonctions remplissent chacun de ces bus sur la maquette.}
+
+\subsubsection*{Décrire la structure d'un paquet CAN.}
+
+\subsubsection*{Donner le nombre d'ID différents présents sur chaque bus identifiés (exports de donnéés depuis le logiciel MuxTrace).}
+
 \subsection{Port OBDII}
+
+\subsubsection*{A quoui ser le port OBDII ?}
+
 Comme décris sur le site \cite{klavkarr}, La norme OBDII a été instaurée à l'origine par la CARB (Californian Air Resources Board) afin de surveiller les émissions polluantes des véhicules.  
-\\
-\\
+
 L'OBD, requiert que le véhicule surveille de manière continue le bon fonctionnement du moteur tout au long de sa durée de vie.
-\\
-\\
+
 Il existe plusieurs normes de l'OBD : 
 \begin{itemize}
     \item L'OBD ou OBDI standardise le connecteur pour assurer son uniformité sur tous les véhicules. En revanche, le protocole de communication demeure plus ou moins spécifique en fonction des marques.
     \item L'OBDII \ref{fig: Port OBDII} est arrivé en 1996 aux Etats Unis pour spécifier des protocoles communs.
     \item L'EOBD, pour European OBD, reprenant l'OBDII est spécifique pour les véhicules européens.
 \end{itemize}
-
+    
+\subsubsection*{Reccherche bibliographique sur le web : câblage de connecteur, monde d'échange entre les outils et le véhicle.}
 
 \section{TP2: Utilisation du logiciel MuxTrace}
 
 \subsection{Etude pratique : régime moteur}
 
+
+\subsubsection*{Observer sur le bus IS la trame 208.}
+\subsubsection*{Faites varier le régime moteur et donnez vos observations sur le champs de données. Par exemple, vous pouvez faire varier la vitesse par pas de 1000tr.min\uppercase{-1}.}
+\subsubsection*{Pouves-vous en déduire une suite logique sur la variation du régime moteur ? Dans tous les cas, donnez vos arguments.}
+
+
 \subsection{Etude pratique : vitesse véhicule}
+
 
 \subsection{Etude pratique : Comodo de phares}
 

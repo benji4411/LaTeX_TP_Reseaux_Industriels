@@ -10,16 +10,21 @@
 %\RequirePackage{siunitx} %Pour écrire avec la notation scientifique (Ex.: \num{2e+9})
 \RequirePackage{float} %Pour placement d'images
 \RequirePackage{graphicx} %Paquet pour insérer des images
-\RequirePackage[justification=centering]{caption} %Pour les légendes centralisées
+\RequirePackage[justification=centering, skip=5pt]{caption} %Pour les légendes centralisées
 \RequirePackage{subcaption}
 \RequirePackage{wallpaper}
 \RequirePackage{nomencl}
 %\makenomenclature
 \RequirePackage{fancyhdr}
+
+% ALWAYS USE PARSKIP, ENUMERATE and ENUMITEM FOR BIG DOCUMENTS !!!
+\RequirePackage[indent]{parskip} % Ajouter des espaces entre les paragraphes
+\RequirePackage{enumerate}
+\RequirePackage{enumitem}
 %\pagestyle{fancy}
 %\fancyheadoffset{1cm}
 %\setlength{\headheight}{2cm}
-\RequirePackage{url}
+\RequirePackage{xurl} % xurl is slightdly better
 \RequirePackage[hidelinks]{hyperref}%Paquet pour insérer légendes dans des sous-figures comme Figure 1a, 1b
 \RequirePackage[left=2.5cm,right=2.5cm,top=2cm,bottom=3.5cm]{geometry} %Configuration de la page
 
@@ -50,7 +55,7 @@
 \ThisLRCornerWallPaper{0.6}{./images/logo_bckgd.jpg}
 	\centering %Centraliser le contenu
 	\includegraphics[width=0.45\textwidth]{./images/logo_UBS.png}\par\vspace{1cm} %Insertion du logo
-	{\scshape\LARGE Université bretagne sud \par} %Nom de l'université
+	{\scshape\LARGE Université Bretagne Sud\par} %Nom de l'université
 	\vspace{1.5cm}%Espace de 1,5cm
 	{\scshape\Large \UE \\ Rapport de travaux pratiques\par} %sous-titre
 	\vspace{1cm}%Espace de 1cm
