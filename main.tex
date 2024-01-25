@@ -3,7 +3,7 @@
 \title{Rapport UBS - Reseaux Industriels} %Titre du fichier
 \usepackage{lipsum} 
 \usepackage{biblatex} %Imports biblatex package
-\addbibresource{bibtex.bib} %Import the bibliography file
+\addbibresource{main.bib} %Import the bibliography file
 \usepackage{appendix} % Package pour gérer les annexes
 \usepackage{url}
 \usepackage{float}
@@ -32,16 +32,14 @@
 
 \section{Introduction} 
 
-\subsection{Contexte et objectifs}
-
-\subsection{Énoncé de la problématique}
+Le but de ce tp est de mettre en pratique nos connaisances théoriques du bus CAN par l'utilisation d'une maquette automobile pédagogique EXXOTEST (voir annexe \ref{fig: maquette EXXOTEST}). Cette maquette est composée d'équipements réels comme des feux xenon, des clignottants, des essui-glaces, des rétros et vitres électriques. De plus, la maquette dispose d'un partie simulé pour le moteur avec des potentiomètres (voir annexe \ref{fig: potentiomètres}) permettant de changer les rapports, augmenter le regime moteur, définir le niveau d'essence etc... 
 
 \section{TP1: Prise en main de la maquette}
 
 \subsection{Bus CAN de la maquette}
 
 \subsection{Port OBDII}
-Comme décris sur le site https://www.outilsobdfacile.fr/presentation-de-l-obd.php, La norme OBDII a été instaurée à l'origine par la CARB (Californian Air Resources Board) afin de surveiller les émissions polluantes des véhicules.  
+Comme décris sur le site \cite{klavkarr}, La norme OBDII a été instaurée à l'origine par la CARB (Californian Air Resources Board) afin de surveiller les émissions polluantes des véhicules.  
 \\
 \\
 L'OBD, requiert que le véhicule surveille de manière continue le bon fonctionnement du moteur tout au long de sa durée de vie.
@@ -88,7 +86,9 @@ Il existe plusieurs normes de l'OBD :
 \section{Annexe : }
 % Ajout d'une image
 \subsection{Illustration complémentaire}
-\insererfigure{./images/OBDII_pins.png}{10cm}{Illustartion port OBDII}{Port OBDII}
+\insererfigure{./images/maquette.jpg}{10cm}{Illustration de la maquette EXXOTEST}{maquette EXXOTEST}
+\insererfigure{./images/potentiomètres_simu.jpg}{10cm}{Illustration des potentiomètres et interrupteurs de la partie simulée}{potentiomètres}
+\insererfigure{./images/OBDII_pins.png}{10cm}{Illustration port OBDII}{Port OBDII}
 \end{appendices}
 
 \end{document}
