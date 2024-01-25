@@ -92,8 +92,8 @@
 \newcommand{\insererfigure}[4]{
 \begin{figure}[H]
 \centering
-\includegraphics[height=#2]{#1}
+\includegraphics[width=#2 \textwidth]{#1}
 \caption{#3}
-\label{fig: #4}
+\label{fig:#4}
 \end{figure}
 }
