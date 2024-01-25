@@ -33,17 +33,39 @@
 
 Le but de ce tp est de mettre en pratique nos connaisances théoriques du bus CAN par l'utilisation d'une maquette automobile pédagogique EXXOTEST (voir annexe \ref{fig: maquette EXXOTEST}). Cette maquette est composée d'équipements réels comme des feux xenon, des clignottants, des essui-glaces, des rétros et vitres électriques. De plus, la maquette dispose d'un partie simulé pour le moteur avec des potentiomètres (voir annexe \ref{fig: potentiomètres}) permettant de changer les rapports, augmenter le regime moteur, définir le niveau d'essence etc... 
 
+% ========================================================================================================
+% 1 Prise en main de la maquette
+% ========================================================================================================
+
 \section{TP1: Prise en main de la maquette}
+
+% --------------------------------------------------------------------------------------------------------
+% 1.1 Bus CAN de la maquette
+% --------------------------------------------------------------------------------------------------------
 
 \subsection{Bus CAN de la maquette}
 
+\dots
+
 \subsubsection*{Identifier le nombre de bus CAN présents sur la laquette ainsi que leur vitesse.}
+
+\dots
 
 \subsubsection*{Quelles fonctions remplissent chacun de ces bus sur la maquette.}
 
+\dots
+
 \subsubsection*{Décrire la structure d'un paquet CAN.}
 
+\dots
+
 \subsubsection*{Donner le nombre d'ID différents présents sur chaque bus identifiés (exports de donnéés depuis le logiciel MuxTrace).}
+
+\dots
+
+% --------------------------------------------------------------------------------------------------------
+% 1.2 Port OBDII
+% --------------------------------------------------------------------------------------------------------
 
 \subsection{Port OBDII}
 
@@ -62,42 +84,151 @@ Il existe plusieurs normes de l'OBD :
     
 \subsubsection*{Reccherche bibliographique sur le web : câblage de connecteur, monde d'échange entre les outils et le véhicle.}
 
+\dots
+
+% ========================================================================================================
+% 2 Utilisation du logiciel MuxTrace
+% ========================================================================================================
+
 \section{TP1: Utilisation du logiciel MuxTrace}
+
+% --------------------------------------------------------------------------------------------------------
+% 2.3 Etude practique : régime moteur
+% --------------------------------------------------------------------------------------------------------
 
 \subsection{Etude pratique : régime moteur}
 
 \subsubsection*{Observer sur le bus IS la trame 208.}
 
-\subsubsection*{Faites varier le régime moteur et donnez vos observations sur le champs de données. Par exemple, vous pouvez faire varier la vitesse par pas de 1000tr.min\uppercase{-1}.}
+\dots
+
+\subsubsection*{Faites varier le régime moteur et donnez vos observations sur le champs de données. Par exemple, vous pouvez faire varier la vitesse par pas de 1000tr.min\textsuperscript{-1}.}
+
+\dots
 
 \subsubsection*{Pouves-vous en déduire une suite logique sur la variation du régime moteur ? Dans tous les cas, donnez vos arguments.}
+
+\dots
+
+% --------------------------------------------------------------------------------------------------------
+% 2.2 Etude practique : vitesse véhicule
+% --------------------------------------------------------------------------------------------------------
 
 \subsection{Etude pratique : vitesse véhicule}
 
 \subsubsection*{Sur le bus IS, identifiez la ou les trames; qui évolent en foction de la vitesse du véhiule.}
+
+\dots
+
 \subsubsection*{Observez la trme 0x44D. Quelle est sa taille et sa fréquence ?}
+
+\dots
+
 \subsubsection*{Faites varier la vitesse du véhicle et donnez vos observations sur les champs de données; Par exemple , vous pouvez fair varier la viteese par pas de 10 de 0 à 100Km/h.}
+
+\dots
+
 \subsubsection*{Pouvez-vous en déduire une suite loguique ur la variationd e la vitesse véhicule . Dans tous les cas; donnez vos arguments.}
 
+% --------------------------------------------------------------------------------------------------------
+% 2.3 Etude practique : Comodo de phares
+% --------------------------------------------------------------------------------------------------------
 \subsection{Etude pratique : Comodo de phares}
 
 \subsubsection*{Actionnez le comodo de phares, et observez l'activité sur les 3 bis CA? pnservanmes depuis MuxTrace.}
-\subsubsection{Quels identificateurs de trames ont un rapport avec les commandes d'éclariage, }
-%\subsubsection*{}
-%\subsubsection*{}
-%\subsubsection*{}
+
+\dots
+
+\subsubsection*{Quels identificateurs de trames ont un rapport avec les commandes d'éclariage, de signalisation et d'essuyage ?}
+
+\dots
+
+\subsubsection*{Sur quels bus avez-vous observé ces identificateurs ?}
+
+\dots
+
+\subsubsection*{Quelle est la taille de la trame concernée ?}
+
+\dots
+
+\subsubsection*{Actionnez la commande d'éclariage et établissez un tableau des fonctions comandées.}
+
+\dots
+
+% --------------------------------------------------------------------------------------------------------
+% 2.4 Etude practique : Rétroviseurs
+% --------------------------------------------------------------------------------------------------------
 
 \subsection{Etude pratique : Rétroviseurs}
 
+\subsubsection*{Faites fonctionner les rétroviseurs du côté droit et du côté gauche, et soyez attentif aux trames. Quel est l'identificateur de tarme qui correspond aux rétroviseurs gauche et droit ?  Sur quel bus ave-vous dait l'observation ?}
+
+\subsubsection*{Quelle est la taille des données de cette trame ?}
+
+\dots
+
+\subsubsection*{A quoi sert le premier octet de donnée ?}
+
+\dots
+
+\subsubsection*{Observer le premier octet de donnnés et établisseaz un tableau des actions  réalissées en fonction de la valeur de l'octet ?}
+
+\dots
+
+\subsubsection*{Utiliser le générateur interactif afin de'émettre la trame de commande des rétroviseurs observée précédemment. Vérifiez les trames de commandes observées précédeññent en associant des touches de votre calvier pour piloter les rétroviseurs. Vous pouvez faire de même avec les leve-vitre ?}
+
+\dots
+
+% --------------------------------------------------------------------------------------------------------
+% 2.5 Etude practique : Faites votre choix
+% --------------------------------------------------------------------------------------------------------
+
 \subsection{Etude pratique : Faites votre choix}
 
-\section{TP3: Utilisation du logiciel MuxTrace et DBEdit}
+\subsubsection*{En fonction de votre avancement dans la séance de TP, vous pouvez exposer une ou deux trames supplémentaires de votre choix sur une ou pluseirus bus de la maquette. De la meme manière que précédemment, donnez la tailles de données, vos observations sous forme de tableau et justifiez vos analyses.}
 
-\section{TP4: Utilisation du mode programmation sous MuxTrace}
+\dots
 
-\subsection{Etude pratique : Chargement d'un exemple}
+% ========================================================================================================
+% 3 Utilisation du logiciel MuxTrace et DBEdit
+% ========================================================================================================
 
-\subsection{Etude pratique :Création de votre exemple}
+\section{TP2: Utilisation du logiciel MuxTrace et DBEdit}
+
+\subsubsection*{Basé sur les observations faites dans la section précédente, créer une base de donnée pour chaque bus et chaque identifiant de paquets analysées.}
+
+\dots
+
+\subsubsection*{Lorsque les fichiers de base de données sont prets, chagez-les depuis votre projet MuxTrace. Vérifiez que vos observations sont cohérentes lorsque vous actionnez les différents commandes concernés de la maquette.}
+
+\dots
+
+\subsubsection*{Qu'en déduisezvous de l'intéret de ces bases de données ?}
+
+\dots
+
+\subsubsection*{Utilisez maintenant le générateur interactif de MuxTrace pour fafire varier les champs de données d'un ID de trame connu dans la base de données. Quel est l'intéret de ce lien avec la vase de donnée par rapport aux signaux d'une trame ?}
+
+\dots
+
+
+% ========================================================================================================
+% 4 Utilisation du mode programmation sous MuxTrace
+% ========================================================================================================
+
+\section{TP3: Utilisation du mode programmation sous MuxTrace}
+
+% --------------------------------------------------------------------------------------------------------
+% 4.1 chargement d'un exemple
+% --------------------------------------------------------------------------------------------------------
+
+\subsubsection*{Etude practique : chargement d'un exemple}
+
+% --------------------------------------------------------------------------------------------------------
+% 4.2 Création de votre exemple
+% --------------------------------------------------------------------------------------------------------
+
+\subsubsection*{Etude practique : Création de votre exemple}
 
 \section{Conclusion}
 
