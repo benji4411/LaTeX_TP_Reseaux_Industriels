@@ -31,7 +31,7 @@
 
 \section{Introduction} 
 
-Le but de ce tp est de mettre en pratique nos connaisances théoriques du bus CAN par l'utilisation d'une maquette automobile pédagogique EXXOTEST (voir annexe \ref{fig: maquette EXXOTEST}). Cette maquette est composée d'équipements réels comme des feux xenon, des clignottants, des essui-glaces, des rétros et vitres électriques. De plus, la maquette dispose d'un partie simulé pour le moteur avec des potentiomètres (voir annexe \ref{fig: potentiomètres}) permettant de changer les rapports, augmenter le regime moteur, définir le niveau d'essence etc... 
+Le but de ce TP est de mettre en pratique nos connaissances théoriques du bus CAN par l'utilisation d'une maquette automobile pédagogique EXXOTEST (voir annexe \ref{fig:maquette EXXOTEST}). Cette maquette est composée d'équipements réels tels que des feux xénon, des clignotants, des essuie-glaces, des rétroviseurs et des vitres électriques. De plus, la maquette dispose d'une partie simulée pour le moteur avec des potentiomètres (voir annexe \ref{fig:potentiomètres}) permettant de changer les rapports, d'augmenter le régime moteur, de définir le niveau d'essence, etc...
 
 % ========================================================================================================
 % 1 Prise en main de la maquette
@@ -45,23 +45,42 @@ Le but de ce tp est de mettre en pratique nos connaisances théoriques du bus CA
 
 \subsection{Bus CAN de la maquette}
 
-\dots
-
 \subsubsection*{Identifier le nombre de bus CAN présents sur la laquette ainsi que leur vitesse.}
 
-\dots
+Comme indiqué en haut à gauche du schéma de câblage de la maquette (voir annexe \ref{fig:schema cablage}), il y a en tout 4 bus CAN : le bus CAN DIAG, le bus CAN I/S, le bus CAN CONF, ainsi que le bus CAN CAR. Les CAN CONF et CAR sont tous deux des CAN LS (low speed) de 125 kbit/s, alors que le CAN I/S est un CAN HS (high speed) avec une vitesse de 500 kbit/s.
 
 \subsubsection*{Quelles fonctions remplissent chacun de ces bus sur la maquette.}
 
-\dots
+Les fonctions remplies par chacun des bus CAN de la maquette sont les suivantes :
+
+\begin{itemize}
+    \item Le bus CAN DIAG, pour diagnostic, permet de récupérer des informations importantes sur les équipements afin de les diagnostiquer.
+    \item Le bus CAN I/S, pour inter-système, s'occupe des liaisons importantes de commandes et de sécurité.
+    \item Le bus CAN CONF, pour confort, s'occupe de la liaison des équipements d'indication et d'aide à la conduite.
+    \item Le bus CAN CAR, pour carrosserie, s'occupe de la liaison des informations moteurs et des équipements extérieurs.
+\end{itemize}
 
 \subsubsection*{Décrire la structure d'un paquet CAN.}
 
-\dots
+Comme décrit sur la figure \ref{fig:structure trame CAN}, chaque trame est séparée par 3 bits au minimum. Une trame CAN est découpée en 7 morceaux, ayant chacun une fonction différente :
+
+\begin{itemize}
+    \item Un champ de Début de 1 bit marque le début de la trame.
+    \item Un champ ID de 11 bits sert à identifier l'émetteur de l'information. Avec 11 bits, il est possible de coder 2047 IDs différents, c'est donc le maximum d'équipements qui peuvent être connectés à un bus CAN.
+    \item Un champ Commande contient le DLC (data length code) de 4 bits qui spécifie la taille du champ d'information.
+    \item Le champ information contient les données de la trame et peut avoir une taille entre 0 et 8 octets.
+    \item Un champ CRC de 15 bits est calculé à partir de l'ensemble des champs transmis jusqu'alors et permet la détection d'erreur.
+    \item Un champ ACK de 2 bits permet l'acquittement d'un message.
+    \item Un champ EOF de 7 bits indique la fin de la trame.
+\end{itemize}
+
+Comme on peut le constater, dans une trame CAN, le champ d'information est seulement de 64 bits au maximum, ce qui est vraiment peu pour une trame de 107 bits au total. Cependant, l'intérêt principal de l'utilisation du protocole CAN réside dans sa robustesse et sa résilience aux pannes et aux bruits, en plus d'une quantité de câblage réduite. C'est pourquoi le bus CAN est largement utilisé dans le domaine automobile.
+
+\insererfigure{./images/structure_trames_CAN.png}{.7}{structure des trames CAN, source: \cite{exxotest}}{structure trame CAN}
 
 \subsubsection*{Donner le nombre d'ID différents présents sur chaque bus identifiés (exports de donnéés depuis le logiciel MuxTrace).}
 
-\dots
+Pour les 3 bus étudiés (I/S, CONF, et CAR), le nombre d'ID différents présents sur chaque bus est respectivement de 22, 70 et 23.
 
 % --------------------------------------------------------------------------------------------------------
 % 1.2 Port OBDII
@@ -78,7 +97,7 @@ L'OBD, requiert que le véhicule surveille de manière continue le bon fonctionn
 Il existe plusieurs normes de l'OBD : 
 \begin{itemize}
     \item L'OBD ou OBDI standardise le connecteur pour assurer son uniformité sur tous les véhicules. En revanche, le protocole de communication demeure plus ou moins spécifique en fonction des marques.
-    \item L'OBDII \ref{fig: Port OBDII} est arrivé en 1996 aux Etats Unis pour spécifier des protocoles communs.
+    \item L'OBDII \ref{fig:Port OBDII} est arrivé en 1996 aux Etats Unis pour spécifier des protocoles communs.
     \item L'EOBD, pour European OBD, reprenant l'OBDII est spécifique pour les véhicules européens.
 \end{itemize}
     
@@ -245,6 +264,7 @@ Il existe plusieurs normes de l'OBD :
 \subsection{Illustration complémentaire}
 \insererfigure{./images/maquette.jpg}{.6}{Illustration de la maquette EXXOTEST}{maquette EXXOTEST}
 \insererfigure{./images/potentiomètres_simu.jpg}{.8}{Illustration des potentiomètres et interrupteurs de la partie simulée}{potentiomètres}
+\insererfigure{./images/potentiomètres_simu.jpg}{.8}{Schéma du cablage de la maquette}{schema cablage}
 \insererfigure{./images/OBDII_pins.png}{.7}{Illustration port OBDII}{Port OBDII}
 \end{appendices}
 
