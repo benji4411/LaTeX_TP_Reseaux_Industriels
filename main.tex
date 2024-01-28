@@ -47,7 +47,7 @@ Le but de ce TP est de mettre en pratique nos connaissances théoriques du bus C
 
 \subsubsection*{Identifier le nombre de bus CAN présents sur la laquette ainsi que leur vitesse.}
 
-Comme indiqué en haut à gauche du schéma de câblage de la maquette (voir annexe \ref{fig:schema cablage}), il y a en tout 4 bus CAN : le bus CAN DIAG, le bus CAN I/S, le bus CAN CONF, ainsi que le bus CAN CAR. Les CAN CONF et CAR sont tous deux des CAN LS (low speed) de 125 kbit/s, alors que le CAN I/S est un CAN HS (high speed) avec une vitesse de 500 kbit/s.
+Comme indiqué en haut à gauche du schéma de câblage de la maquette (voir annexe \ref{fig:schema cablage}), il y a en tout 4 bus CAN: le bus CAN DIAG, le bus CAN I/S, le bus CAN CONF, ainsi que le bus CAN CAR. Les CAN CONF et CAR sont tous deux des CAN LS (low speed) de 125 kbit/s, alors que le CAN I/S est un CAN HS (high speed) avec une vitesse de 500 kbit/s.
 
 \subsubsection*{Quelles fonctions remplissent chacun de ces bus sur la maquette.}
 
@@ -90,20 +90,32 @@ Pour les 3 bus étudiés (I/S, CONF, et CAR), le nombre d'ID différents présen
 
 \subsubsection*{A quoi sert le port OBDII ?}
 
-Comme décris sur le site \cite{klavkarr}, La norme OBDII a été instaurée à l'origine par la CARB (Californian Air Resources Board) afin de surveiller les émissions polluantes des véhicules.  
+Comme décrit sur le site \cite{klavkarr}, la norme OBDII a été instaurée à l'origine par la CARB (Californian Air Resources Board) afin de surveiller les émissions polluantes des véhicules. La norme requiert que le véhicule surveille de manière continue le bon fonctionnement du moteur tout au long de sa durée de vie.
 
-L'OBD, requiert que le véhicule surveille de manière continue le bon fonctionnement du moteur tout au long de sa durée de vie.
+Le protocole OBD permet le diagnostic embarqué d'un véhicule. C'est un système électronique responsable de l'auto-diagnostic et de la production de rapports destinés aux professionnels de la réparation. Grâce à ce système, les techniciens ont accès à des informations sur les sous-systèmes du véhicule, permettant ainsi le suivi de sa performance et l'analyse des besoins en réparations.
 
 Il existe plusieurs normes de l'OBD : 
 \begin{itemize}
     \item L'OBD ou OBDI standardise le connecteur pour assurer son uniformité sur tous les véhicules. En revanche, le protocole de communication demeure plus ou moins spécifique en fonction des marques.
-    \item L'OBDII \ref{fig:Port OBDII} est arrivé en 1996 aux Etats Unis pour spécifier des protocoles communs.
-    \item L'EOBD, pour European OBD, reprenant l'OBDII est spécifique pour les véhicules européens.
+    \item L'OBDII est arrivé aux États-Unis en 1996 pour spécifier des protocoles communs. En plus de cela, contrairement à l'OBDI qui est connecté à l’extérieur de la console d'une voiture, l'OBDII est intégré au véhicule.
+    \item L'EOBD, pour European OBD, reprenant l'OBDII, est spécifique pour les véhicules européens.
 \end{itemize}
+
     
 \subsubsection*{Reccherche bibliographique sur le web : câblage de connecteur, monde d'échange entre les outils et le véhicle.}
 
-\dots
+Comme on peut le voir à l'annexe \ref{fig:Port OBDII}, le port OBDII est composé de 16 broches, chacune ayant un rôle spécifique. Parmi elles, il y a :
+
+\begin{itemize}
+    \item 2 broches pour le positif et le négatif du J1850 (SAE) utilisant le protocole de modulation de durée d’impulsion (VPW).
+    \item 2 broches pour récupérer la masse du châssis et la masse du signal.
+    \item 2 broches pour la ligne K et la ligne L utilisant un protocole de communication série asynchrone.
+    \item 2 broches pour le LOW et le HIGH du protocole CAN.
+    \item 7 broches non standard réservées au constructeur.
+    \item 1 broche d'alimentation connectée à la batterie du véhicule pour alimenter les outils de scan. Elle est soit de type A avec une tension de 12V pour les voitures, ou de type B avec une tension de 24V pour les poids lourds.
+\end{itemize}
+
+Les informations sont générées par les unités de contrôle du moteur puis sont analysées par les outils connectés au port OBDII présent dans le véhicule.
 
 % ========================================================================================================
 % 2 Utilisation du logiciel MuxTrace
@@ -264,7 +276,7 @@ Il existe plusieurs normes de l'OBD :
 \subsection{Illustration complémentaire}
 \insererfigure{./images/maquette.jpg}{.6}{Illustration de la maquette EXXOTEST}{maquette EXXOTEST}
 \insererfigure{./images/potentiomètres_simu.jpg}{.8}{Illustration des potentiomètres et interrupteurs de la partie simulée}{potentiomètres}
-\insererfigure{./images/potentiomètres_simu.jpg}{.8}{Schéma du cablage de la maquette}{schema cablage}
+\insererfigure{./images/schema_cablage.jpg}{.8}{Schéma du cablage de la maquette}{schema cablage}
 \insererfigure{./images/OBDII_pins.png}{.7}{Illustration port OBDII}{Port OBDII}
 \end{appendices}
 
