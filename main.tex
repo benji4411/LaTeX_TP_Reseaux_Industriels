@@ -141,15 +141,40 @@ Nous pouvons ensuite observer les trames pour les 3 bus CAN sur le logiciel MuxT
 
 \subsubsection*{Observer sur le bus IS la trame 208.}
 
-\dots
+Sur MuxTrace nous pouvons voir que la trame d'id 208 du bus IS contient des données de 8 octets et emets avec une période de 10ms.
 
 \subsubsection*{Faites varier le régime moteur et donnez vos observations sur le champs de données. Par exemple, vous pouvez faire varier la vitesse par pas de 1000tr.min\textsuperscript{-1}.}
 
-\dots
+Lorsque nous faisons varier le régime moteur, nous constatons que le premier octet de la trame 208 varie. Nous avons reporté dans le tableau \ref{tab:regime moteur trame 208} la valeur du premier octet obtenue en faisant varier la vitesse par pas de 1000tr.min\textsuperscript{-1} de 0tr.min\textsuperscript{-1} à 5000tr.min\textsuperscript{-1}.
+
+\begin{table}[H]
+    \begin{tabular}{|l|l|l|}
+    \hline
+    \textbf{Régime moteur (tr.min\textsuperscript{-1})} & \textbf{Premier octet (hexa)} & \textbf{Premier octet (base 10)} \\ \hline
+    0                                  & 00                                       & 00                                          \\ \hline
+    1000                               & 21                                       & 33                                          \\ \hline
+    2000                               & 3F                                       & 63                                          \\ \hline
+    3000                               & 5E                                       & 94                                          \\ \hline
+    4000                               & 7D                                       & 125                                         \\ \hline   
+    5000                               & 9B                                       & 155                                         \\ \hline  
+    \end{tabular}
+    \caption{Premier octet de la trame 208 en fonction du régime moteur}
+    \label{tab:regime moteur trame 208}
+\end{table}
 
 \subsubsection*{Pouves-vous en déduire une suite logique sur la variation du régime moteur ? Dans tous les cas, donnez vos arguments.}
 
-\dots
+En observant les valeurs en base 10, on constate la suite suivante:
+
+\begin{itemize}
+    \item de 0 à 1000: +33
+    \item de 1000 à 2000: +30
+    \item de 2000 à 3000: +31
+    \item de 3000 à 4000: +31
+    \item de 4000 à 5000: +30
+\end{itemize}
+
+On a donc une suite logique d'environ 31 par pas de 1000tr.min\textsuperscript{-1}.
 
 % --------------------------------------------------------------------------------------------------------
 % 2.2 Etude practique : vitesse véhicule
