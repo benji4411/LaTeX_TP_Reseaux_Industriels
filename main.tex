@@ -123,6 +123,16 @@ Les informations sont générées par les unités de contrôle du moteur puis so
 
 \section{TP1: Utilisation du logiciel MuxTrace}
 
+Dans cette partie, nous allons utiliser le logiciel MuxTrace afin d'analyser les trames circulant dans les bus CAN. Pour cela, nous allons nous interfacer avec les bus I/S, CONF, et CAR grâce à la plaque de branchement de la maquette (voir illustration du branchement, annexe \ref{fig:Tableau interface}). Les signaux des bus CAN sont ensuite envoyés sur un boîtier USB-MUX-6C6L, avec le CAN CONF sur le port 1, le CAN I/S sur le port 2, et le CAN CAR sur le port 3 (voir illustration annexe \ref{fig:Boitier usb}). Cela permet, au final, de récupérer les informations des trames sur le logiciel MuxTrace.
+
+Sur le logiciel MuxTrace, nous configurons chaque bus avec le bon débit en utilisant la détection automatique, comme illustré dans la figure \ref{fig:Detection auto débit}.
+
+\insererfigure{./images/detection_auto_débit.PNG}{.5}{Outil de détection automatique du débit sur le logiciel MuxTrace}{Detection auto débit}
+
+Nous pouvons ensuite observer les trames pour les 3 bus CAN sur le logiciel MuxTrace, comme on peut le voir dans la figure \ref{fig:Liste trames bus}.
+
+\insererfigure{./images/liste_trames_bus.PNG}{1}{Observation des trames sur le logiciel MuxTrace}{Liste trames bus}
+
 % --------------------------------------------------------------------------------------------------------
 % 2.3 Etude practique : régime moteur
 % --------------------------------------------------------------------------------------------------------
@@ -274,10 +284,12 @@ Les informations sont générées par les unités de contrôle du moteur puis so
 \section{Annexe : }
 % Ajout d'une image
 \subsection{Illustration complémentaire}
-\insererfigure{./images/maquette.jpg}{.6}{Illustration de la maquette EXXOTEST}{maquette EXXOTEST}
-\insererfigure{./images/potentiomètres_simu.jpg}{.8}{Illustration des potentiomètres et interrupteurs de la partie simulée}{potentiomètres}
-\insererfigure{./images/schema_cablage.jpg}{.8}{Schéma du cablage de la maquette}{schema cablage}
-\insererfigure{./images/OBDII_pins.png}{.7}{Illustration port OBDII}{Port OBDII}
+\insererfigure{./images/maquette.jpg}{.7}{Illustration de la maquette EXXOTEST}{maquette EXXOTEST}
+\insererfigure{./images/potentiomètres_simu.jpg}{.7}{Illustration des potentiomètres et interrupteurs de la partie simulée}{potentiomètres}
+\insererfigure{./images/schema_cablage.jpg}{.7}{Schéma du cablage de la maquette}{schema cablage}
+\insererfigure{./images/OBDII_pins.png}{.7}{Port OBDII}{Port OBDII}
+\insererfigure{./images/tableau_interface.jpg}{.6}{Illustration des branchements sur la plaque de la maquette}{Tableau interface}
+\insererfigure{./images/boitier_usb.jpg}{.6}{Illustration du boitier USB-MUX-6C6L}{Boitier usb}
 \end{appendices}
 
 \end{document}
