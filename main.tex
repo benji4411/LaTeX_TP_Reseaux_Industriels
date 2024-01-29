@@ -102,7 +102,7 @@ Il existe plusieurs normes de l'OBD :
 \end{itemize}
 
     
-\subsubsection*{Reccherche bibliographique sur le web : câblage de connecteur, monde d'échange entre les outils et le véhicle.}
+\subsubsection*{Reccherche bibliographique sur le web : câblage de connecteur, mode d'échange entre les outils et le véhicle.}
 
 Comme on peut le voir à l'annexe \ref{fig:Port OBDII}, le port OBDII est composé de 16 broches, chacune ayant un rôle spécifique. Parmi elles, il y a :
 
@@ -182,30 +182,52 @@ On a donc une suite logique d'environ 31 par pas de 1000tr.min\textsuperscript{-
 
 \subsection{Etude pratique : vitesse véhicule}
 
-\subsubsection*{Sur le bus IS, identifiez la ou les trames; qui évolent en foction de la vitesse du véhiule.}
+\subsubsection*{Sur le bus IS, identifiez la ou les trames qui évolent en fonction de la vitesse du véhiule.}
 
-\dots
+Lorsque l'on modifie la vitesse, nous constatons un changement sur le premier, troisième et cinquième octet de la trame 44D ainsi que le premier octet de la trame 38D.
 
-\subsubsection*{Observez la trme 0x44D. Quelle est sa taille et sa fréquence ?}
+\subsubsection*{Observez la trame 0x44D. Quelle est sa taille et sa fréquence ?}
 
-\dots
+La trame 0x44D a une taille de 8 octets et une fréquence de 40ms
 
-\subsubsection*{Faites varier la vitesse du véhicle et donnez vos observations sur les champs de données; Par exemple , vous pouvez fair varier la viteese par pas de 10 de 0 à 100Km/h.}
+\subsubsection*{Faites varier la vitesse du véhicle et donnez vos observations sur les champs de données. Par exemple, vous pouvez fair varier la viteese par pas de 10 de 0 à 100Km/h.}
 
-\dots
+Lorsque nous faisons varier la vitesse du véhicule, nous constatons que le premier, troisième et cinquième octet de la trame 44D varient avec la même valeur. Nous avons reporté dans le tableau \ref{tab:vitesse véhicule trame 44D} la valeur obtenue en faisant varier la vitesse par pas de 10km/h de 0km/h à 100km/h.
 
-\subsubsection*{Pouvez-vous en déduire une suite loguique ur la variationd e la vitesse véhicule . Dans tous les cas; donnez vos arguments.}
+\begin{table}[H]
+    \begin{tabular}{|l|l|l|}
+    \hline
+    \textbf{Vitesse véhicule (tr/min)} & \textbf{Octets 1,3 et 5 (hexa)} & \textbf{Otets 1,3 et 5  (base 10)} \\ \hline
+    0                                  & 00                                       & 00                                          \\ \hline
+    10                                 & 03                                       & 03                                          \\ \hline
+    20                                 & 08                                       & 08                                          \\ \hline
+    30                                 & 0B                                       & 11                                          \\ \hline
+    40                                 & 0F                                       & 15                                         \\ \hline   
+    50                                 & 13                                       & 19                                         \\ \hline
+    60                                 & 17                                       & 23                                         \\ \hline
+    70                                 & 1B                                       & 27                                         \\ \hline
+    80                                 & 1E                                       & 30                                         \\ \hline
+    90                                 & 22                                       & 34                                         \\ \hline  
+    100                                & 26                                       & 38                                         \\ \hline
+    \end{tabular}
+    \caption{Octets 1, 3 et 5 de la trame 44D en fonction de la vitesse du véhicule}
+    \label{tab:vitesse véhicule trame 44D}
+\end{table}
+
+\subsubsection*{Pouvez-vous en déduire une suite logique sur la variation de la vitesse du véhicule ? Dans tous les cas, donnez vos arguments.}
+
+En observant les valeurs en base 10, on constate une suite logique de 3.8, soit environ 4 par pas de 10km/h.
 
 % --------------------------------------------------------------------------------------------------------
 % 2.3 Etude practique : Comodo de phares
 % --------------------------------------------------------------------------------------------------------
 \subsection{Etude pratique : Comodo de phares}
 
-\subsubsection*{Actionnez le comodo de phares, et observez l'activité sur les 3 bis CA? pnservanmes depuis MuxTrace.}
+\subsubsection*{Actionnez le comodo de phares, et observez l'activité sur les 3 bus CAN observables depuis MuxTrace.}
 
 \dots
 
-\subsubsection*{Quels identificateurs de trames ont un rapport avec les commandes d'éclariage, de signalisation et d'essuyage ?}
+\subsubsection*{Quels identificateurs de trames ont un rapport avec les commandes d'éclairage, de signalisation et d'essuyage ?}
 
 \dots
 
@@ -237,11 +259,11 @@ On a donc une suite logique d'environ 31 par pas de 1000tr.min\textsuperscript{-
 
 \dots
 
-\subsubsection*{Observer le premier octet de donnnés et établisseaz un tableau des actions  réalissées en fonction de la valeur de l'octet ?}
+\subsubsection*{Observer le premier octet de donnnés et établissez un tableau des actions  réalisées en fonction de la valeur de l'octet.}
 
 \dots
 
-\subsubsection*{Utiliser le générateur interactif afin de'émettre la trame de commande des rétroviseurs observée précédemment. Vérifiez les trames de commandes observées précédeññent en associant des touches de votre calvier pour piloter les rétroviseurs. Vous pouvez faire de même avec les leve-vitre ?}
+\subsubsection*{Utiliser le générateur interactif afin d'émettre la trame de commande des rétroviseurs observée précédemment. Vérifiez les trames de commandes observées précédemment en associant des touches de votre clavier pour piloter les rétroviseurs. Vous pouvez faire de même avec les lève-vitres ?}
 
 \dots
 
@@ -251,7 +273,7 @@ On a donc une suite logique d'environ 31 par pas de 1000tr.min\textsuperscript{-
 
 \subsection{Etude pratique : Faites votre choix}
 
-\subsubsection*{En fonction de votre avancement dans la séance de TP, vous pouvez exposer une ou deux trames supplémentaires de votre choix sur une ou pluseirus bus de la maquette. De la meme manière que précédemment, donnez la tailles de données, vos observations sous forme de tableau et justifiez vos analyses.}
+\subsubsection*{En fonction de votre avancement dans la séance de TP, vous pouvez exposer une ou deux trames supplémentaires de votre choix sur une ou plusieurs bus de la maquette. De la même manière que précédemment, donnez la taille de données, vos observations sous forme de tableau et justifiez vos analyses.}
 
 \dots
 
@@ -265,15 +287,15 @@ On a donc une suite logique d'environ 31 par pas de 1000tr.min\textsuperscript{-
 
 \dots
 
-\subsubsection*{Lorsque les fichiers de base de données sont prets, chagez-les depuis votre projet MuxTrace. Vérifiez que vos observations sont cohérentes lorsque vous actionnez les différents commandes concernés de la maquette.}
+\subsubsection*{Lorsque les fichiers de base de données sont prêts, chagez-les depuis votre projet MuxTrace. Vérifiez que vos observations sont cohérentes lorsque vous actionnez les différentes commandes concernées de la maquette.}
 
 \dots
 
-\subsubsection*{Qu'en déduisezvous de l'intéret de ces bases de données ?}
+\subsubsection*{Qu'en déduisez-vous de l'intéret de ces bases de données ?}
 
 \dots
 
-\subsubsection*{Utilisez maintenant le générateur interactif de MuxTrace pour fafire varier les champs de données d'un ID de trame connu dans la base de données. Quel est l'intéret de ce lien avec la vase de donnée par rapport aux signaux d'une trame ?}
+\subsubsection*{Utilisez maintenant le générateur interactif de MuxTrace pour faire varier les champs de données d'un ID de trame connu dans la base de données. Quel est l'intéret de ce lien avec la base de donnée par rapport aux signaux d'une trame ?}
 
 \dots
 
