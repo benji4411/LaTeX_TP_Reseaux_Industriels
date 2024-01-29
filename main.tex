@@ -6,6 +6,9 @@
 \addbibresource{main.bib} %Import the bibliography file
 \usepackage{appendix} % Package pour gérer les annexes
 \usepackage{float}
+\usepackage{booktabs} % toprule, midrule, ...
+\usepackage{makecell}
+\usepackage{comment} % comment for some debugging text formats
 \begin{document}
 
 %----------- Informations du rapport ---------
@@ -31,7 +34,9 @@
 
 \section{Introduction} 
 
-Le but de ce TP est de mettre en pratique nos connaissances théoriques du bus CAN par l'utilisation d'une maquette automobile pédagogique EXXOTEST (voir annexe \ref{fig:maquette EXXOTEST}). Cette maquette est composée d'équipements réels tels que des feux xénon, des clignotants, des essuie-glaces, des rétroviseurs et des vitres électriques. De plus, la maquette dispose d'une partie simulée pour le moteur avec des potentiomètres (voir annexe \ref{fig:potentiomètres}) permettant de changer les rapports, d'augmenter le régime moteur, de définir le niveau d'essence, etc...
+Ce document représente les développement du groupe avec le Travail Pratique du cours Réseaux Industriels du programme de Master SESI pour l'année académique 2023-2024, à l'Université Bretagne Sud.
+
+Le but de ce TP est de mettre en pratique nos connaissances théoriques du bus CAN par l'utilisation d'une maquette automobile pédagogique EXXOTEST (voir annexe \ref{fig:maquette EXXOTEST}). Cette maquette est composée d'équipements réels tels que des feux xénon, des clignotants, des essuie-glaces, des rétroviseurs et des vitres électriques. De plus, la maquette dispose d'une partie simulée pour le moteur avec des potentiomètres (voir annexe \ref{fig:potentiomètres}) permettant de changer les rapports, d'augmenter le régime moteur, de définir le niveau d'essence, entre autres options.
 
 % ========================================================================================================
 % 1 Prise en main de la maquette
@@ -62,7 +67,7 @@ Les fonctions remplies par chacun des bus CAN de la maquette sont les suivantes 
 
 \subsubsection*{Décrire la structure d'un paquet CAN.}
 
-Comme décrit sur la figure \ref{fig:structure trame CAN}, chaque trame est séparée par 3 bits au minimum. Une trame CAN est découpée en 7 morceaux, ayant chacun une fonction différente :
+La Figure \ref{fig:structure trame CAN} montre que chaque trame est séparée par 3 bits au minimum. Une trame CAN est découpée en 7 morceaux, ayant chacun une fonction différente :
 
 \begin{itemize}
     \item Un champ de Début de 1 bit marque le début de la trame.
@@ -74,7 +79,8 @@ Comme décrit sur la figure \ref{fig:structure trame CAN}, chaque trame est sép
     \item Un champ EOF de 7 bits indique la fin de la trame.
 \end{itemize}
 
-Comme on peut le constater, dans une trame CAN, le champ d'information est seulement de 64 bits au maximum, ce qui est vraiment peu pour une trame de 107 bits au total. Cependant, l'intérêt principal de l'utilisation du protocole CAN réside dans sa robustesse et sa résilience aux pannes et aux bruits, en plus d'une quantité de câblage réduite. C'est pourquoi le bus CAN est largement utilisé dans le domaine automobile.
+
+Comme on peut le voir, le champ d'information d'une trame CAN a une longueur maximale de 64 bits, longueur courte pour une trame de 107 bits au total. Cependant, le principal avantage de l'utilisation du protocole CAN réside dans sa robustesse et sa résilience aux pannes et au bruit, outre un câblage réduit. C'est pourquoi le bus CAN est largement utilisé dans le domaine automobile
 
 \insererfigure{./images/structure_trames_CAN.png}{.7}{structure des trames CAN, source: \cite{exxotest}}{structure trame CAN}
 
@@ -90,14 +96,14 @@ Pour les 3 bus étudiés (I/S, CONF, et CAR), le nombre d'ID différents présen
 
 \subsubsection*{A quoi sert le port OBDII ?}
 
-Comme décrit sur le site \cite{klavkarr}, la norme OBDII a été instaurée à l'origine par la CARB (Californian Air Resources Board) afin de surveiller les émissions polluantes des véhicules. La norme requiert que le véhicule surveille de manière continue le bon fonctionnement du moteur tout au long de sa durée de vie.
+Comme décrit sur le site \cite{klavkarr}, la norme OBDII a été instaurée à l'origine par la CARB, ``Californian Air Resources Board'' pour son acronyme en anglais, afin de surveiller les émissions polluantes des véhicules. La norme requiert que le véhicule surveille de manière continue le bon fonctionnement du moteur tout au long de sa durée de vie.\pagebreak
 
 Le protocole OBD permet le diagnostic embarqué d'un véhicule. C'est un système électronique responsable de l'auto-diagnostic et de la production de rapports destinés aux professionnels de la réparation. Grâce à ce système, les techniciens ont accès à des informations sur les sous-systèmes du véhicule, permettant ainsi le suivi de sa performance et l'analyse des besoins en réparations.
 
-Il existe plusieurs normes de l'OBD : 
+Certaines versions de la norme OBDII sont énumérées ci-dessous.
 \begin{itemize}
     \item L'OBD ou OBDI standardise le connecteur pour assurer son uniformité sur tous les véhicules. En revanche, le protocole de communication demeure plus ou moins spécifique en fonction des marques.
-    \item L'OBDII est arrivé aux États-Unis en 1996 pour spécifier des protocoles communs. En plus de cela, contrairement à l'OBDI qui est connecté à l’extérieur de la console d'une voiture, l'OBDII est intégré au véhicule.
+    \item L'OBDII est arrivé aux États-Unis en 1996 pour spécifier des protocoles communs. En plus de cela, contrairement à l'OBDI qui est connecté à l'extérieur de la console d'une voiture, l'OBDII est intégré au véhicule.
     \item L'EOBD, pour European OBD, reprenant l'OBDII, est spécifique pour les véhicules européens.
 \end{itemize}
 
@@ -123,7 +129,7 @@ Les informations sont générées par les unités de contrôle du moteur puis so
 
 \section{TP1: Utilisation du logiciel MuxTrace}
 
-Dans cette partie, nous allons utiliser le logiciel MuxTrace afin d'analyser les trames circulant dans les bus CAN. Pour cela, nous allons nous interfacer avec les bus I/S, CONF, et CAR grâce à la plaque de branchement de la maquette (voir illustration du branchement, annexe \ref{fig:Tableau interface}). Les signaux des bus CAN sont ensuite envoyés sur un boîtier USB-MUX-6C6L, avec le CAN CONF sur le port 1, le CAN I/S sur le port 2, et le CAN CAR sur le port 3 (voir illustration annexe \ref{fig:Boitier usb}). Cela permet, au final, de récupérer les informations des trames sur le logiciel MuxTrace.
+Dans cette partie, nous allons utiliser le logiciel MuxTrace afin d'analyser les trames circulant dans les bus CAN. Pour cela, nous allons nous interfacer avec les bus I/S, CONF, et CAR grâce à la plaque de branchement de la maquette (voir illustration du branchement, annexe \ref{fig:Tableau interface}). Les signaux des bus CAN sont ensuite envoyés sur un boîtier USB-MUX-6C6L, avec le CAN CONF sur le port 1, le CAN I/S sur le port 2, et le CAN CAR sur le port 3 (voir illustration annexe \ref{fig:Boitier usb}). Cela permet, au final, de récupérer les informations des trames sur le logiciel MuxTrace. \pagebreak
 
 Sur le logiciel MuxTrace, nous configurons chaque bus avec le bon débit en utilisant la détection automatique, comme illustré dans la figure \ref{fig:Detection auto débit}.
 
@@ -141,26 +147,48 @@ Nous pouvons ensuite observer les trames pour les 3 bus CAN sur le logiciel MuxT
 
 \subsubsection*{Observer sur le bus IS la trame 208.}
 
-Sur MuxTrace nous pouvons voir que la trame d'id 208 du bus IS contient des données de 8 octets et emets avec une période de 10ms.
+Sur MuxTrace nous pouvons voir que la trame d'ID 208 du bus IS contient des données de 8 octets et emets avec une période de 10ms.
 
 \subsubsection*{Faites varier le régime moteur et donnez vos observations sur le champs de données. Par exemple, vous pouvez faire varier la vitesse par pas de 1000tr.min\textsuperscript{-1}.}
 
 Lorsque nous faisons varier le régime moteur, nous constatons que le premier octet de la trame 208 varie. Nous avons reporté dans le tableau \ref{tab:regime moteur trame 208} la valeur du premier octet obtenue en faisant varier la vitesse par pas de 1000tr.min\textsuperscript{-1} de 0tr.min\textsuperscript{-1} à 5000tr.min\textsuperscript{-1}.
 
+\begin{comment}
 \begin{table}[H]
     \begin{tabular}{|l|l|l|}
     \hline
     \textbf{Régime moteur (tr.min\textsuperscript{-1})} & \textbf{Premier octet (hexa)} & \textbf{Premier octet (base 10)} \\ \hline
-    0                                  & 00                                       & 00                                          \\ \hline
-    1000                               & 21                                       & 33                                          \\ \hline
-    2000                               & 3F                                       & 63                                          \\ \hline
-    3000                               & 5E                                       & 94                                          \\ \hline
-    4000                               & 7D                                       & 125                                         \\ \hline   
-    5000                               & 9B                                       & 155                                         \\ \hline  
+    0  & 00       & 00 \\
+    1000                               & 21       & 33 \\
+    2000                               & 3F       & 63 \\
+    3000                               & 5E       & 94 \\
+    4000                               & 7D       & 125\\   
+    5000                               & 9B       & 155\\  
     \end{tabular}
     \caption{Premier octet de la trame 208 en fonction du régime moteur}
     \label{tab:regime moteur trame 208}
 \end{table}
+\end{comment}
+
+\begingroup
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c c}
+        \toprule
+        \makecell{\textbf{Régime moteur}\\ \textbf{(tr.min\textsuperscript{-1})}} & \makecell{\textbf{Premier octet}\\ \textbf{(hexa)}} & \makecell{\textbf{Premier octet}\\ \textbf{(base 10)}} \\
+        \midrule
+        0    & 00 & 00 \\
+        1000 & 21 & 33 \\
+        2000 & 3F & 63 \\
+        3000 & 5E & 94 \\
+        4000 & 7D & 125 \\
+        5000 & 9B & 155 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Premier octet de la trame 208 en fonction du régime moteur}
+    \label{tab:regime_moteur_trame_208}
+\end{table}
+\endgroup
 
 \subsubsection*{Pouves-vous en déduire une suite logique sur la variation du régime moteur ? Dans tous les cas, donnez vos arguments.}
 
@@ -194,25 +222,53 @@ La trame 0x44D a une taille de 8 octets et une fréquence de 40ms
 
 Lorsque nous faisons varier la vitesse du véhicule, nous constatons que le premier, troisième et cinquième octet de la trame 44D varient avec la même valeur. Nous avons reporté dans le tableau \ref{tab:vitesse véhicule trame 44D} la valeur obtenue en faisant varier la vitesse par pas de 10km/h de 0km/h à 100km/h.
 
-\begin{table}[H]
+\begin{comment}
+    \begin{table}[H]
     \begin{tabular}{|l|l|l|}
     \hline
     \textbf{Vitesse véhicule (tr/min)} & \textbf{Octets 1,3 et 5 (hexa)} & \textbf{Otets 1,3 et 5  (base 10)} \\ \hline
-    0                                  & 00                                       & 00                                          \\ \hline
-    10                                 & 03                                       & 03                                          \\ \hline
-    20                                 & 08                                       & 08                                          \\ \hline
-    30                                 & 0B                                       & 11                                          \\ \hline
-    40                                 & 0F                                       & 15                                         \\ \hline   
-    50                                 & 13                                       & 19                                         \\ \hline
-    60                                 & 17                                       & 23                                         \\ \hline
-    70                                 & 1B                                       & 27                                         \\ \hline
-    80                                 & 1E                                       & 30                                         \\ \hline
-    90                                 & 22                                       & 34                                         \\ \hline  
-    100                                & 26                                       & 38                                         \\ \hline
+    0  & 00       & 00 \\
+    10 & 03       & 03 \\
+    20 & 08       & 08 \\
+    30 & 0B       & 11 \\
+    40 & 0F       & 15\\   
+    50 & 13       & 19\\
+    60 & 17       & 23\\
+    70 & 1B       & 27\\
+    80 & 1E       & 30\\
+    90 & 22       & 34\\  
+    100& 26       & 38\\
     \end{tabular}
     \caption{Octets 1, 3 et 5 de la trame 44D en fonction de la vitesse du véhicule}
     \label{tab:vitesse véhicule trame 44D}
 \end{table}
+\end{comment}
+
+\begingroup
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c c}
+    \toprule
+    \makecell{\textbf{Vitesse véhicule}\\ \textbf{(km/h)}} & \makecell{\textbf{Octets 1,3 et 5}\\ \textbf{(hexa)}} & \makecell{\textbf{Octets 1,3 et 5}\\ \textbf{(base 10)}} \\
+    \midrule
+    0  & 00 & 00 \\
+    10 & 03 & 03 \\
+    20 & 08 & 08 \\
+    30 & 0B & 11 \\
+    40 & 0F & 15 \\   
+    50 & 13 & 19 \\
+    60 & 17 & 23 \\
+    70 & 1B & 27 \\
+    80 & 1E & 30 \\
+    90 & 22 & 34 \\  
+    100& 26 & 38 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Octets 1, 3 et 5 de la trame 44D en fonction de la vitesse du véhicule.}
+    \label{tab:vitesse véhicule trame 44D}
+\end{table}
+\endgroup
+
 
 \subsubsection*{Pouvez-vous en déduire une suite logique sur la variation de la vitesse du véhicule ? Dans tous les cas, donnez vos arguments.}
 
