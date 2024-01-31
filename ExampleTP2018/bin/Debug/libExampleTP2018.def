@@ -1,0 +1,19 @@
+EXPORTS
+    DllMain = DllMain@12 @1
+    GetInfos = GetInfos@8 @2
+    GetSDKVersion = GetSDKVersion@0 @3
+    OnCanEvent = OnCanEvent@4 @4
+    OnGetVariableName = OnGetVariableName@12 @5
+    OnIsoEvent = OnIsoEvent@4 @6
+    OnKey = OnKey@4 @7
+    OnLinEvent = OnLinEvent@4 @8
+    OnPreStart = OnPreStart@0 @9
+    OnReplayFrame = OnReplayFrame@12 @10
+    OnSend = OnSend@4 @11
+    OnSetVariableValue = OnSetVariableValue@12 @12
+    OnStart = OnStart@0 @13
+    OnStop = OnStop@0 @14
+    OnTimer = OnTimer@4 @15
+    OnTriggerReplay = OnTriggerReplay@8 @16
+    OnVanEvent = OnVanEvent@4 @17
+    SomeFunction @18

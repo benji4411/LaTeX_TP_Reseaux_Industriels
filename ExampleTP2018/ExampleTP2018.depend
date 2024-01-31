@@ -1,0 +1,45 @@
+# depslib dependency file v1.0
+1446667744 source:f:\jde\tp\2018\exampletp2018\main.cpp
+	"main.h"
+
+1446667744 f:\jde\tp\2018\exampletp2018\main.h
+	<windows.h>
+
+1256128670 source:f:\jde\tp\2018\exampletp2018\prgmux.c
+	<windows.h>
+	<math.h>
+	<stdio.h>
+	"prgmux.h"
+
+1258016334 f:\jde\tp\2018\exampletp2018\prgmux.h
+	"refmux.h"
+
+1340370662 f:\jde\tp\2018\exampletp2018\refmux.h
+
+1543438402 source:f:\jde\tp\2018\exampletp2018\prgmux_skeleton.cpp
+	<windows.h>
+	<stdio.h>
+	"prgmux.h"
+
+1446671344 source:h:\mes documents\tp reseau indu\exampletp2018\main.cpp
+	"main.h"
+
+1446671344 h:\mes documents\tp reseau indu\exampletp2018\main.h
+	<windows.h>
+
+1256135870 source:h:\mes documents\tp reseau indu\exampletp2018\prgmux.c
+	<windows.h>
+	<math.h>
+	<stdio.h>
+	"prgmux.h"
+
+1258019934 h:\mes documents\tp reseau indu\exampletp2018\prgmux.h
+	"refmux.h"
+
+1340377862 h:\mes documents\tp reseau indu\exampletp2018\refmux.h
+
+1543442004 source:h:\mes documents\tp reseau indu\exampletp2018\prgmux_skeleton.cpp
+	<windows.h>
+	<stdio.h>
+	"prgmux.h"
+
