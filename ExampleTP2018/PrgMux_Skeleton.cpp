@@ -4,10 +4,10 @@
 
    DESCRIPTION:
 
-	Définition du squelette à utiliser pour le développement d'un programme d'extension
-    du MuxTrace. Les fonctions non souhaitées doivent mise en commentaire.
+	Dï¿½finition du squelette ï¿½ utiliser pour le dï¿½veloppement d'un programme d'extension
+    du MuxTrace. Les fonctions non souhaitï¿½es doivent mise en commentaire.
 
-	Pour plus d'informations sur les fonctions pouvant être utilisées dans ce plugin, tel que
+	Pour plus d'informations sur les fonctions pouvant ï¿½tre utilisï¿½es dans ce plugin, tel que
 	CanSendMsg, VanSendMsg, ..., consulter les documentations.
 
     CE FICHIER DOIT ETRE COPIE AVANT D'ETRE MODIFIE.
@@ -77,11 +77,11 @@ _EXTERNC int _MUXPRG OnStart(void)
     ZeroMemory( &g_hCanMsgTx, sizeof( g_hCanMsgTx ) );
     ZeroMemory( &g_hCanMsgTx_aux, sizeof( g_hCanMsgTx_aux ) );
     // CAN frame configuration
-    g_hCanMsgTx.dwIdent = 0x208; // n° Ident
+    g_hCanMsgTx.dwIdent = 0x208; // nï¿½ Ident
     g_hCanMsgTx.eTypeId = CAN_ID_STD; // Standard ID
     g_hCanMsgTx.wDataLen = 8; // Size of frame
     // auxiliar CAN frame configuration
-    g_hCanMsgTx_aux.dwIdent = 0x001; // n° Ident
+    g_hCanMsgTx_aux.dwIdent = 0x001; // nï¿½ Ident
     g_hCanMsgTx_aux.eTypeId = CAN_ID_STD; // Standard ID
     g_hCanMsgTx_aux.wDataLen = 8; // Size of frame
     for(i=0;i<8;i++)
@@ -327,7 +327,7 @@ _EXTERNC int _MUXPRG OnCanEvent(tCanEvent *hCanEvent)
 	DisplayMsg("OnCanEvent has occured");
     // Want to use it using millisecond unit
     dwTime = hCanEvent->dwTimeStamp/10;
-    sprintf(szOut, "  Event has occured on network n°%d at %02d:%02d:%02d.%03d", hCanEvent->wBus+1, dwTime/3600000, dwTime/60000, dwTime/1000, dwTime%1000);
+    sprintf(szOut, "  Event has occured on network nï¿½%d at %02d:%02d:%02d.%03d", hCanEvent->wBus+1, dwTime/3600000, dwTime/60000, dwTime/1000, dwTime%1000);
 
 	DisplayMsg(szOut);
 	DisplayMsg("");
@@ -352,7 +352,7 @@ _EXTERNC int _MUXPRG OnLinEvent(tLinEvent *hLinEvent)
 	DisplayMsg("OnLinEvent has occured");
     // Want to use it using millisecond unit
     dwTime = hLinEvent->dwTimeStamp/10;
-    sprintf(szOut, "  Event has occured on network n°%d at %02d:%02d:%02d.%03d", hLinEvent->wBus+1, dwTime/3600000, dwTime/60000, dwTime/1000, dwTime%1000);
+    sprintf(szOut, "  Event has occured on network nï¿½%d at %02d:%02d:%02d.%03d", hLinEvent->wBus+1, dwTime/3600000, dwTime/60000, dwTime/1000, dwTime%1000);
 	DisplayMsg(szOut);
 	DisplayMsg("");
 
@@ -376,7 +376,7 @@ _EXTERNC int _MUXPRG OnIsoEvent(tIsoEvent *hIsoEvent)
 	DisplayMsg("OnIsoEvent has occured");
     // Want to use it using millisecond unit
     dwTime = hIsoEvent->dwTimeStamp/10;
-    sprintf(szOut, "  Event has occured on network n°%d at %02d:%02d:%02d.%03d", hIsoEvent->wBus+1, dwTime/3600000, dwTime/60000, dwTime/1000, dwTime%1000);
+    sprintf(szOut, "  Event has occured on network nï¿½%d at %02d:%02d:%02d.%03d", hIsoEvent->wBus+1, dwTime/3600000, dwTime/60000, dwTime/1000, dwTime%1000);
 	DisplayMsg(szOut);
 	DisplayMsg("");
 
@@ -400,7 +400,7 @@ _EXTERNC int _MUXPRG OnVanEvent(tVanEvent *hVanEvent)
 	DisplayMsg("OnVanEvent has occured");
     // Want to use it using millisecond unit
     dwTime = hVanEvent->dwTimeStamp/10;
-    sprintf(szOut, "  Event has occured on network n°%d at %02d:%02d:%02d.%03d", hVanEvent->wBus+1, dwTime/3600000, dwTime/60000, dwTime/1000, dwTime%1000);
+    sprintf(szOut, "  Event has occured on network nï¿½%d at %02d:%02d:%02d.%03d", hVanEvent->wBus+1, dwTime/3600000, dwTime/60000, dwTime/1000, dwTime%1000);
 	DisplayMsg(szOut);
 	DisplayMsg("");
 

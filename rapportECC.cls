@@ -27,7 +27,8 @@
 \RequirePackage{xurl} % xurl is slightdly better
 \RequirePackage[hidelinks]{hyperref}%Paquet pour insérer légendes dans des sous-figures comme Figure 1a, 1b
 \RequirePackage[left=2.5cm,right=2.5cm,top=2cm,bottom=3.5cm]{geometry} %Configuration de la page
-
+\RequirePackage{listings} % pour importer le code snippets
+\RequirePackage{xcolor} 
 
 %-------------------- Informations sur le rapport ----------------------
 
@@ -96,4 +97,25 @@
 \caption{#3}
 \label{fig:#4}
 \end{figure}
+}
+
+\definecolor{Darkgreen}{rgb}{0,0.4,0}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\lstset{
+    backgroundcolor=\color{lbcolor},
+    tabsize=4,
+	language=C++,
+	captionpos=b,
+	tabsize=3,
+	frame=lines,
+	numbers=left,
+	numberstyle=\tiny,
+	numbersep=5pt,
+	breaklines=true,
+	showstringspaces=false,
+	basicstyle=\scriptsize,
+	%  identifierstyle=\color{magenta},
+	keywordstyle=\color[rgb]{0,0,1},
+	commentstyle=\color{Darkgreen},
+	stringstyle=\color{red}
 }
