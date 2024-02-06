@@ -218,12 +218,12 @@ Lorsque nous faisons varier la vitesse du véhicule, nous constatons que le prem
     10 & 03 & 03 \\
     20 & 08 & 08 \\
     30 & 0B & 11 \\
-    40 & 0F & 15 \\   
+    40 & 0F & 15 \\
     50 & 13 & 19 \\
     60 & 17 & 23 \\
     70 & 1B & 27 \\
     80 & 1E & 30 \\
-    90 & 22 & 34 \\  
+    90 & 22 & 34 \\
     100& 26 & 38 \\
     \bottomrule
     \end{tabular}
@@ -231,7 +231,6 @@ Lorsque nous faisons varier la vitesse du véhicule, nous constatons que le prem
     \label{tab:vitesse_vehicule_trame_44D}
 \end{table}
 \endgroup
-
 
 \subsubsection*{Pouvez-vous en déduire une suite logique sur la variation de la vitesse du véhicule ? Dans tous les cas, donnez vos arguments.}
 
@@ -242,25 +241,41 @@ En observant les valeurs en base 10, on constate une suite logique de 3.8, soit 
 % --------------------------------------------------------------------------------------------------------
 \subsection{Etude pratique : Comodo de phares}
 
-\subsubsection*{Actionnez le comodo de phares, et observez l'activité sur les 3 bus CAN observables depuis MuxTrace.}
-
-\dots
-
 \subsubsection*{Quels identificateurs de trames ont un rapport avec les commandes d'éclairage, de signalisation et d'essuyage ?}
 
-\dots
+Lorsque nous actionnons les commandes d'éclairage, de signalisation ou d'essuyage, nous observons des changements sur la trame 94, avec le premier octet commandant l'éclairage, le deuxième les essuie-glaces et le troisième la signalisation.
 
 \subsubsection*{Sur quels bus avez-vous observé ces identificateurs ?}
 
-\dots
+Nous observons que la trame 94 circule sur le bus carrosserie.
 
 \subsubsection*{Quelle est la taille de la trame concernée ?}
 
-\dots
+La taille de la trame 94 est de 5 octets.
 
-\subsubsection*{Actionnez la commande d'éclariage et établissez un tableau des fonctions comandées.}
+\subsubsection*{Actionnez la commande d'éclairage et établissez un tableau des fonctions comandées.}
 
-\dots
+Après avoir fait varier la commande d'éclairage entre feux de position, feux de croisement, feux de route et anti-brouillard, nous avons reporté dans le tableau \ref{tab:commande_eclairage_trame_94} les valeurs prises par le premier octet de la trame 94.
+
+\begingroup
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c}
+    \toprule
+    \makecell{\textbf{fonction comandée}} & \makecell{\textbf{Premier octet}\\ \textbf{(hexa)}} \\
+    \midrule
+    Feux éteints  & 20 \\
+    Feux de position  & 40 \\
+    Feux de croisement & 80 \\
+    Feux de route & 98 (au moment de l'activation) \\
+    Anti-brouillard & 84 (au moment de l'activation) \\
+    Appel de phare & 28 (au moment de l'activation) \\
+    \bottomrule
+    \end{tabular}
+    \caption{Premier octet de la trame 94 en fonction de la commande d'éclairage.}
+    \label{tab:commande_eclairage_trame_94}
+\end{table}
+\endgroup
 
 % --------------------------------------------------------------------------------------------------------
 % 2.4 Etude practique : Rétroviseurs
