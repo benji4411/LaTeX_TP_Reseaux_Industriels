@@ -283,19 +283,57 @@ Après avoir fait varier la commande d'éclairage entre feux de position, feux d
 
 \subsection{Etude pratique : Rétroviseurs}
 
-\subsubsection*{Faites fonctionner les rétroviseurs du côté droit et du côté gauche, et soyez attentif aux trames. Quel est l'identificateur de tarme qui correspond aux rétroviseurs gauche et droit ?  Sur quel bus ave-vous dait l'observation ?}
+\subsubsection*{Faites fonctionner les rétroviseurs du côté droit et du côté gauche, et soyez attentif aux trames. Quel est l'identificateur de trame correspond aux rétroviseurs gauche et droit ?  Sur quel bus avez-vous fait l'observation ?}
+
+Lorsque nous faisons fonctionner les rétroviseurs avec le sélecteur et les boutons directionnels, nous constatons des changements sur la trame 115. Cette trame est présente sur le bus confort.
 
 \subsubsection*{Quelle est la taille des données de cette trame ?}
 
-\dots
+La trame 115 a une taille de 4 octets.
 
 \subsubsection*{A quoi sert le premier octet de donnée ?}
 
-\dots
+En observant la trame 115, nous constatons que les 4 premiers bits du premier octet contrôlent la direction et les 4 derniers bits du deuxième octet contrôlent le choix entre le rétroviseur gauche et droit.
 
 \subsubsection*{Observer le premier octet de donnnés et établissez un tableau des actions  réalisées en fonction de la valeur de l'octet.}
 
-\dots
+Nous avons reporté les actions réalisées en fonction des 4 premiers bits du premier octet dans le tableau \ref{tab:direction_trame_115} et ceux des 4 derniers bits du premier octet dans le tableau \ref{tab:choix_retro_trame_115}.
+
+\begingroup
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c}
+    \toprule
+    \makecell{\textbf{Actions réalisées}} & \makecell{\textbf{4 premier bits}\\ \textbf{(hexa)}} \\
+    \midrule
+    Aucune direction  & 0 \\
+    Bas & 1 \\    
+    Haut  & 2 \\
+    Gauche & 4 \\
+    Droite & 8 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Direction du rétroviseur en fonction de la valeur des 4 premiers bits du premier octet.}
+    \label{tab:direction_trame_115}
+\end{table}
+\endgroup
+
+\begingroup
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c}
+    \toprule
+    \makecell{\textbf{Actions réalisées}} & \makecell{\textbf{4 derniers bits}\\ \textbf{(hexa)}} \\
+    \midrule
+    Aucun selectionné  & 1 \\
+    rétroviseur droit & 2 \\    
+    rétroviseur gauche  & 4 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Choix du rétroviseur en fonction de la valeur des 4 derniers bits}
+    \label{tab:choix_retro_trame_115}
+\end{table}
+\endgroup
 
 \subsubsection*{Utiliser le générateur interactif afin d'émettre la trame de commande des rétroviseurs observée précédemment. Vérifiez les trames de commandes observées précédemment en associant des touches de votre clavier pour piloter les rétroviseurs. Vous pouvez faire de même avec les lève-vitres ?}
 
