@@ -335,6 +335,8 @@ En observant les valeurs en base 10, on constate une suite logique de 3.8, soit 
 
 \textit{Dans un premier temps, on vous demande de charger le fichier d'exemple de dll fournit en séances de TP dans l'outil MuxTrace.}
 
+\textit{Analysez et observez cet example et donnez vos remarques sur le comportement et les interactions de cet exemple sur la maquete.}
+
 La figure \ref{fig:MuxTrace_dll_default} montre le bon fonctionnement du programme MuxTrace après sa configuration avec l'exemple de fichier .dll sans aucune configuration supplémentaire.
 
 Dans l'Annexe \ref{sec:annexeB} - Code \ref{lst:onevent} se trouve le code original de la fonction OnEvenet chargée de mettre à jour périodiquement les données de chaque trame sur les trois bus comme le montre la figure \ref{fig:MuxTrace_dll_default}.
@@ -347,8 +349,6 @@ Dans l'Annexe \ref{sec:annexeB} - Code \ref{lst:onevent} se trouve le code origi
     \label{fig:MuxTrace_dll_default}
 \end{figure}
 
-\textit{Analysez et observez cet example et donnez vos remarques sur le comportement et les interactions de cet exemple sur la maquete.}
-
 % --------------------------------------------------------------------------------------------------------
 % 4.2 Création de votre exemple
 % --------------------------------------------------------------------------------------------------------
@@ -359,9 +359,21 @@ Dans l'Annexe \ref{sec:annexeB} - Code \ref{lst:onevent} se trouve le code origi
 
 \textit{Développez votre programme en C en partant de l'exemple foruni dans le répertoire d'installation de MuxTrace afin de créers votre dll d'exmplequi réalisera le scénario que vous aurez inventé.}
 
+En groupe, l'idée était de démontrer l'utilisation et la gestion correctes des châssis et des bus avec une relation entre action et réaction, c'est-à-dire qu'une action dans un système du simulateur de véhicule générera une réaction dans un autre système. De cette manière, la logique présentée dans la figure \ref{fig:OnCanEvent_UML} a été développée.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.5\textwidth]{./images/OnCanEvent_UML.png}
+    \caption{Diagramme UML du scénario proposé pour développer le test TP3.}
+    \label{fig:OnCanEvent_UML}
+\end{figure}
+
+Pour réaliser la logique de la figure \ref{fig:OnCanEvent_UML} la fonction \textit{OnCanEvent} a été modifiée comme on peut le trouver dans l'Annexe \ref{sec:annexeB} - Code \ref{lst:oncanevent}.
+
+
 \section{Conclusion}
 
-\newpage
+\pagebreak
 
 
 \printbibliography
