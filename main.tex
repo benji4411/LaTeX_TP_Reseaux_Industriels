@@ -404,20 +404,56 @@ Nous allons dans cette partie déterminer la trame responsable des commandes rad
 
 \subsubsection*{Basé sur les observations faites dans la section précédente, créer une base de donnée pour chaque bus et chaque identifiant de paquets analysées.}
 
-\dots
+À partir de ce qui était obtenu précédemment, une base de données est créé, qui comportera toutes les trames importantes étudiées.
+Voici ci-dessous un exemple \ref{fig:regime_db} de création de trame, dans cet exemple ce sera la trame liée au régime :
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.7\textwidth]{./images/Regime_DB.png}
+    \caption{Création de trame DBEdit.}
+    \label{fig:regime_db}
+\end{figure}
+
+Il y a plusieurs choses que nous pouvons observer sur cette liste :
+
+\begin{itemize}
+    \item Tout d'abord on doit donner l'identité de la trame qui correspond dans ce cas-ci à celle du régime moteur (208).
+    \item Ensuite on donne le nombre d'octets que contient la trame (8, dans cet exemple).
+    \item Après cela on ajoute  une valeur maximale et minimale (de 0 à 5000, dans cet exemple).
+    \item On peut aussi ajouter un offset si on en a besoin (0, dans cet exemple)
+    \item La dernière chose qui a changé est le "Facteur", qui représente le pas moyen entre chaque valeur (1000 tr/min dans ce cas).
+\end{itemize}
 
 \subsubsection*{Lorsque les fichiers de base de données sont prêts, chagez-les depuis votre projet MuxTrace. Vérifiez que vos observations sont cohérentes lorsque vous actionnez les différentes commandes concernées de la maquette.}
 
-\dots
+Une fois toutes les trames ajoutées dans la base de données sur DB Edit, on va utiliser MuxTrace dans le but d'observer que nos choix lors de la création de cette dernière sont cohérents.
+Après avoir ajouté notre base de données on viendra changer quelques actionneurs sur la maquette, qui sont bien sûrs en lien avec les trames ajouté dans notre base de données, comme par exemple la trame liée au régime moteur.
+
+Grâce à ça, on a pu vérifier que notre base de données correspondait avec ce qui est fait via la maquette.
 
 \subsubsection*{Qu'en déduisez-vous de l'intéret de ces bases de données ?}
 
-\dots
+L'intérêt des bases de données, est de repérer les trames que nous voulons étudier pour ensuite agir dessus et vérifier que nous obtenons bien le comportement souhaité.
 
 \subsubsection*{Utilisez maintenant le générateur interactif de MuxTrace pour faire varier les champs de données d'un ID de trame connu dans la base de données. Quel est l'intéret de ce lien avec la base de donnée par rapport aux signaux d'une trame ?}
 
-\dots
+Pour cette question dans MuxTrace, on ajoute un générateur interactif, avec ce dernier, on viendra faire varier certaines trames pour ensuite vérifier si on bien le bon rendu sur la maquette.
+Donc par exemple si on augmente la trame correspondant au régime moteur alors sur la maquette on pourra aussi observer une augmentation.
+Une fois cela fait on vérifie si les valeurs que nous avons définies lors de la création de la base de données son juste ou non, en comparant tout simplement la valeur espérée  valeur réelle lue sur la maquette.
+En fonction du résultat on ajuste ou non notre "facteur", par exemple.
+Voici si un exemple \ref{fig:DB_MuxTrace} de DBEdit dans MuxTrace : 
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.9\textwidth]{./images/MUXTRACE_with_DB.png}
+    \caption{Utilisation d'une base de donnée DBEdit sur MuxTrace.}
+    \label{fig:DB_MuxTrace}
+\end{figure}
+
+
+On peut observer dans le cas ci-dessus qu'on a notre base de données avec nos trames à l'intérieur ainsi qu'une touche qui est affectée pour choisir si oui ou non ont envoyé sur le bus CAN une commande.
+Mais il y a aussi bien d'option, par exemple nous ne sommes pas obligés à utiliser une touche mais plutôt d'envoyer de façon périodique une commande.
+Une fois nos paramètres choisis, il nous reste les tests.
 
 % ========================================================================================================
 % 4 Utilisation du mode programmation sous MuxTrace
