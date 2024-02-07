@@ -230,12 +230,12 @@ Lorsque nous faisons varier la vitesse du véhicule, nous constatons que le prem
     10 & 03 & 03 \\
     20 & 08 & 08 \\
     30 & 0B & 11 \\
-    40 & 0F & 15 \\   
+    40 & 0F & 15 \\
     50 & 13 & 19 \\
     60 & 17 & 23 \\
     70 & 1B & 27 \\
     80 & 1E & 30 \\
-    90 & 22 & 34 \\  
+    90 & 22 & 34 \\
     100& 26 & 38 \\
     \bottomrule
     \end{tabular}
@@ -243,7 +243,6 @@ Lorsque nous faisons varier la vitesse du véhicule, nous constatons que le prem
     \label{tab:vitesse_vehicule_trame_44D}
 \end{table}
 \endgroup
-
 
 \subsubsection*{Pouvez-vous en déduire une suite logique sur la variation de la vitesse du véhicule ? Dans tous les cas, donnez vos arguments.}
 
@@ -254,25 +253,41 @@ En observant les valeurs en base 10, on constate une suite logique de 3.8, soit 
 % --------------------------------------------------------------------------------------------------------
 \subsection{Etude pratique : Comodo de phares}
 
-\subsubsection*{Actionnez le comodo de phares, et observez l'activité sur les 3 bus CAN observables depuis MuxTrace.}
-
-\dots
-
 \subsubsection*{Quels identificateurs de trames ont un rapport avec les commandes d'éclairage, de signalisation et d'essuyage ?}
 
-\dots
+Lorsque nous actionnons les commandes d'éclairage, de signalisation ou d'essuyage, nous observons des changements sur la trame 94, avec le premier octet commandant l'éclairage, le deuxième les essuie-glaces et le troisième la signalisation.
 
 \subsubsection*{Sur quels bus avez-vous observé ces identificateurs ?}
 
-\dots
+Nous observons que la trame 94 circule sur le bus carrosserie.
 
 \subsubsection*{Quelle est la taille de la trame concernée ?}
 
-\dots
+La taille de la trame 94 est de 5 octets.
 
-\subsubsection*{Actionnez la commande d'éclariage et établissez un tableau des fonctions comandées.}
+\subsubsection*{Actionnez la commande d'éclairage et établissez un tableau des fonctions comandées.}
 
-\dots
+Après avoir fait varier la commande d'éclairage entre feux de position, feux de croisement, feux de route et anti-brouillard, nous avons reporté dans le tableau \ref{tab:commande_eclairage_trame_94} les valeurs prises par le premier octet de la trame 94.
+
+\begingroup
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c}
+    \toprule
+    \makecell{\textbf{fonction comandée}} & \makecell{\textbf{Premier octet}\\ \textbf{(hexa)}} \\
+    \midrule
+    Feux éteints  & 20 \\
+    Feux de position  & 40 \\
+    Feux de croisement & 80 \\
+    Feux de route & 98 (au moment de l'activation) \\
+    Anti-brouillard & 84 (au moment de l'activation) \\
+    Appel de phare & 28 (au moment de l'activation) \\
+    \bottomrule
+    \end{tabular}
+    \caption{Premier octet de la trame 94 en fonction de la commande d'éclairage.}
+    \label{tab:commande_eclairage_trame_94}
+\end{table}
+\endgroup
 
 % --------------------------------------------------------------------------------------------------------
 % 2.4 Etude practique : Rétroviseurs
@@ -280,23 +295,72 @@ En observant les valeurs en base 10, on constate une suite logique de 3.8, soit 
 
 \subsection{Etude pratique : Rétroviseurs}
 
-\subsubsection*{Faites fonctionner les rétroviseurs du côté droit et du côté gauche, et soyez attentif aux trames. Quel est l'identificateur de tarme qui correspond aux rétroviseurs gauche et droit ?  Sur quel bus ave-vous dait l'observation ?}
+\subsubsection*{Faites fonctionner les rétroviseurs du côté droit et du côté gauche, et soyez attentif aux trames. Quel est l'identificateur de trame correspond aux rétroviseurs gauche et droit ?  Sur quel bus avez-vous fait l'observation ?}
+
+Lorsque nous faisons fonctionner les rétroviseurs avec le sélecteur et les boutons directionnels, nous constatons des changements sur la trame 115. Cette trame est présente sur le bus confort.
 
 \subsubsection*{Quelle est la taille des données de cette trame ?}
 
-\dots
+La trame 115 a une taille de 4 octets.
 
 \subsubsection*{A quoi sert le premier octet de donnée ?}
 
-\dots
+En observant la trame 115, nous constatons que les 4 premiers bits du premier octet contrôlent la direction et les 4 derniers bits du deuxième octet contrôlent le choix entre le rétroviseur gauche et droit.
 
 \subsubsection*{Observer le premier octet de donnnés et établissez un tableau des actions  réalisées en fonction de la valeur de l'octet.}
 
-\dots
+Nous avons reporté les actions réalisées en fonction des 4 premiers bits du premier octet dans le tableau \ref{tab:direction_trame_115} et ceux des 4 derniers bits du premier octet dans le tableau \ref{tab:choix_retro_trame_115}.
+
+\begingroup
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c}
+    \toprule
+    \makecell{\textbf{Actions réalisées}} & \makecell{\textbf{4 premier bits}\\ \textbf{(hexa)}} \\
+    \midrule
+    Aucune direction  & 0 \\
+    Bas & 1 \\    
+    Haut  & 2 \\
+    Gauche & 4 \\
+    Droite & 8 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Direction du rétroviseur en fonction de la valeur des 4 premiers bits du premier octet.}
+    \label{tab:direction_trame_115}
+\end{table}
+\endgroup
+
+\begingroup
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c}
+    \toprule
+    \makecell{\textbf{Actions réalisées}} & \makecell{\textbf{4 derniers bits}\\ \textbf{(hexa)}} \\
+    \midrule
+    Aucun selectionné  & 1 \\
+    rétroviseur droit & 2 \\    
+    rétroviseur gauche  & 4 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Choix du rétroviseur en fonction de la valeur des 4 derniers bits}
+    \label{tab:choix_retro_trame_115}
+\end{table}
+\endgroup
 
 \subsubsection*{Utiliser le générateur interactif afin d'émettre la trame de commande des rétroviseurs observée précédemment. Vérifiez les trames de commandes observées précédemment en associant des touches de votre clavier pour piloter les rétroviseurs. Vous pouvez faire de même avec les lève-vitres ?}
 
-\dots
+Pour pouvoir utiliser le générateur interactif sur le logiciel MuxTrace, nous devons tout d'abord l'activer pour le bus CAN, comme montré dans la figure \ref{fig:generateur_interactif_activation}.
+
+
+\insererfigure{./images/activer_generateur.PNG}{.7}{Activation du générateur intéractif pour le bus CAN sur MuxTrace}{generateur_interactif_activation}
+
+Nous pouvons ensuite ouvrir le générateur interactif de trames CAN via le menu déroulant "Fenêtres", comme illustré dans la figure \ref{fig:ouvrir_generateur}.
+
+\insererfigure{./images/ouvrir_generateur.png}{.7}{Ouvrir le générateur intéractif de trames CAN sur MuxTrace}{ouvrir_generateur}
+
+Nous avons ensuite créé une trame d'ID 115 avec comme données 82 00 00 00, ce qui correspond à actionner le rétroviseur droit vers la droite. Cette trame est émise sur le bus confort, qui correspond au CAN 3 dans notre cas. De plus, nous avons configuré la touche "U" du clavier pour émettre la trame. La trame créée est illustrée à la figure \ref{fig:generateur_retro_droit}.
+
+\insererfigure{./images/generateur_retro_droit.PNG}{.7}{Trame de contrôle du rétroviseur droit crée dans le générateur intéractif}{generateur_retro_droit}
 
 % --------------------------------------------------------------------------------------------------------
 % 2.5 Etude practique : Faites votre choix
@@ -306,7 +370,31 @@ En observant les valeurs en base 10, on constate une suite logique de 3.8, soit 
 
 \subsubsection*{En fonction de votre avancement dans la séance de TP, vous pouvez exposer une ou deux trames supplémentaires de votre choix sur une ou plusieurs bus de la maquette. De la même manière que précédemment, donnez la taille de données, vos observations sous forme de tableau et justifiez vos analyses.}
 
-\dots
+- Commande radio:
+
+Nous allons dans cette partie déterminer la trame responsable des commandes radio. Pour cela, nous avons actionné les commandes radio à partir des boutons sous le volant et nous avons observé un changement sur la trame 21F du bus CAN carrosserie, notamment sur le premier octet. Nous avons reporté les commandes radio en fonction du premier octet de la trame 21F dans le tableau \ref{tab:commande_radio_trame_21F}.
+
+\begingroup
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c}
+    \toprule
+    \makecell{\textbf{Actions réalisées}} & \makecell{\textbf{Premier octet}\\ \textbf{(hexa)}} \\
+    \midrule
+    SRC & 02 \\
+    Augmentation volume & 08 \\    
+    Diminution volume & 04 \\
+    Station suivante & 80 \\
+    Station précedente & 40 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Commande radio en fonction de la valeur du premier octet de la trame 21F}
+    \label{tab:commande_radio_trame_21F}
+\end{table}
+\endgroup
+
+
+
 
 % ========================================================================================================
 % 3 Utilisation du logiciel MuxTrace et DBEdit
