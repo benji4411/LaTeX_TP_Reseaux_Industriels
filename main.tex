@@ -358,6 +358,30 @@ Nous avons ensuite créé une trame d'ID 115 avec comme données 82 00 00 00, ce
 
 \subsubsection*{En fonction de votre avancement dans la séance de TP, vous pouvez exposer une ou deux trames supplémentaires de votre choix sur une ou plusieurs bus de la maquette. De la même manière que précédemment, donnez la taille de données, vos observations sous forme de tableau et justifiez vos analyses.}
 
+- Commande radio:
+
+Nous allons dans cette partie déterminer la trame responsable des commandes radio. Pour cela, nous avons actionné les commandes radio à partir des boutons sous le volant et nous avons observé un changement sur la trame 21F du bus CAN carrosserie, notamment sur le premier octet. Nous avons reporté les commandes radio en fonction du premier octet de la trame 21F dans le tableau \ref{tab:commande_radio_trame_21F}.
+
+\begingroup
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c}
+    \toprule
+    \makecell{\textbf{Actions réalisées}} & \makecell{\textbf{Premier octet}\\ \textbf{(hexa)}} \\
+    \midrule
+    SRC & 02 \\
+    Augmentation volume & 08 \\    
+    Diminution volume & 04 \\
+    Station suivante & 80 \\
+    Station précedente & 40 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Commande radio en fonction de la valeur du premier octet de la trame 21F}
+    \label{tab:commande_radio_trame_21F}
+\end{table}
+\endgroup
+
+
 
 
 % ========================================================================================================
