@@ -85,7 +85,7 @@ Comme on peut le voir, le champ d'information d'une trame CAN a une longueur max
 \begin{figure}[H]
     \centering
     \includegraphics[width=.7\textwidth]{./images/structure_trames_CAN.png}
-    \caption{Structure des trames CAN, source: }
+    \caption{Structure des trames CAN, source: \cite{exxotest}}
     \label{fig:structure_trames_CAN}
 \end{figure}
 
@@ -133,7 +133,7 @@ Les informations sont générées par les unités de contrôle du moteur puis so
 
 \section{TP1: Utilisation du logiciel MuxTrace}
 
-Dans cette partie, nous allons utiliser le logiciel MuxTrace afin d'analyser les trames circulant dans les bus CAN. Pour cela, nous allons nous interfacer avec les bus I/S, CONF, et CAR grâce à la plaque de branchement de la maquette (voir illustration du branchement, annexe \ref{fig:Tableau_interface}). Les signaux des bus CAN sont ensuite envoyés sur un boîtier USB-MUX-6C6L, avec le CAN CONF sur le port 1, le CAN I/S sur le port 2, et le CAN CAR sur le port 3 (voir illustration annexe \ref{fig:Boitier_usb}). Cela permet, au final, de récupérer les informations des trames sur le logiciel MuxTrace. \pagebreak
+Dans cette partie, nous allons utiliser le logiciel MuxTrace afin d'analyser les trames circulant dans les bus CAN. Pour cela, nous allons nous interfacer avec les bus I/S, CONF, et CAR grâce à la plaque de branchement de la maquette (voir illustration du branchement, annexe \ref{fig:tableau_interface}). Les signaux des bus CAN sont ensuite envoyés sur un boîtier USB-MUX-6C6L, avec le CAN CONF sur le port 1, le CAN I/S sur le port 2, et le CAN CAR sur le port 3 (voir illustration annexe \ref{fig:boitier_usb}). Cela permet, au final, de récupérer les informations des trames sur le logiciel MuxTrace. \pagebreak
 
 Sur le logiciel MuxTrace, nous configurons chaque bus avec le bon débit en utilisant la détection automatique, comme illustré dans la figure \ref{fig:detection_auto_debit}.
 
@@ -469,14 +469,17 @@ En groupe, l'idée était de démontrer l'utilisation et la gestion correctes de
 
 Pour réaliser la logique de la figure \ref{fig:OnCanEvent_UML} la fonction \textit{OnCanEvent} a été modifiée comme on peut le trouver dans l'Annexe \ref{sec:annexeB} - Code \ref{lst:oncanevent}.
 
+En plus, dans l'annexe \ref{sec:annexeA}, dans la section \ref{sec:annexeA:TP3}, la figure \ref{fig:conf_additional_real_limit_vitesse} montre la configuration supplémentaire à effectuer dans MuxTrace pour l'implémentation du fichier `.dll'. En outre, les figures \ref{fig:test_local_1} et \ref{fig:test_local_2} montrent un avant et un après la modification manuelle de la valeur de la vitesse dans MuxTrace et le changement qu'elle produit dans l'image 44D (volume), ce qui permet de vérifier que le code développé fonctionne correctement.
 
 \section{Conclusion}
 
 
-%\bibliographystyle{unsrt}
-%\bibliography{main.bib} 
+\bibliographystyle{unsrt}
+\bibliography{main.bib} 
 
 % Ajout de l'annexe
+
+\pagebreak
 
 \appendix
 
@@ -526,7 +529,7 @@ Pour réaliser la logique de la figure \ref{fig:OnCanEvent_UML} la fonction \tex
     \label{fig:boitier_usb}
 \end{figure}
 
-\subsection{TP2}
+\subsection{TP3}\label{sec:annexeA:TP3}
 
 \begin{figure}[H]
     \centering
