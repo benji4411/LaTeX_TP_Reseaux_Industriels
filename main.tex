@@ -1,11 +1,10 @@
 \documentclass{rapportECC}
 \usepackage[utf8]{inputenc} % Use UTF-8 encoding
-\usepackage{lipsum}
 \title{Rapport UBS - Reseaux Industriels} %Titre du fichier
 \usepackage{lipsum} 
-\usepackage{biblatex} %Imports biblatex package
-\addbibresource{main.bib} %Import the bibliography file
-\usepackage{appendix} % Package pour gérer les annexes
+%\usepackage{biblatex} %Imports biblatex package
+%\addbibresource{main.bib} %Import the bibliography file
+%\usepackage{appendix} % Package pour gérer les annexes
 \usepackage{float}
 \usepackage{booktabs} % toprule, midrule, ...
 \usepackage{makecell}
@@ -37,7 +36,7 @@
 
 Ce document résulte des travaux de groupe menés durant les TP du cours de Réseaux Industriels du programme de Master SESI pour l'année académique 2023-2024 à l'Université Bretagne Sud.
 
-Le but de ce TP est de mettre en pratique nos connaissances théoriques du bus CAN par l'utilisation d'une maquette automobile pédagogique EXXOTEST (voir annexe \ref{fig:maquette EXXOTEST}). Cette maquette est composée d'équipements réels tels que des feux xénon, des clignotants, des essuie-glaces, des rétroviseurs et des vitres électriques. De plus, la maquette dispose d'une partie simulée pour le moteur avec des potentiomètres (voir annexe \ref{fig:potentiometres}) permettant de changer les rapports, d'augmenter le régime moteur, de définir le niveau d'essence, entre autres.
+Le but de ce TP est de mettre en pratique nos connaissances théoriques du bus CAN par l'utilisation d'une maquette automobile pédagogique EXXOTEST (voir annexe \ref{fig:maquette_EXXOTEST}). Cette maquette est composée d'équipements réels tels que des feux xénon, des clignotants, des essuie-glaces, des rétroviseurs et des vitres électriques. De plus, la maquette dispose d'une partie simulée pour le moteur avec des potentiomètres (voir annexe \ref{fig:potentiometres}) permettant de changer les rapports, d'augmenter le régime moteur, de définir le niveau d'essence, entre autres.
 
 % ========================================================================================================
 % 1 Prise en main de la maquette
@@ -83,7 +82,12 @@ La Figure \ref{fig:structure_trames_CAN} montre que chaque trame est séparée p
 
 Comme on peut le voir, le champ d'information d'une trame CAN a une longueur maximale de 64 bits, longueur courte pour une trame de 107 bits au total. Cependant, le principal avantage de l'utilisation du protocole CAN réside dans sa robustesse et sa résilience aux pannes et au bruit, outre un câblage réduit. C'est pourquoi le bus CAN est largement utilisé dans le domaine automobile
 
-\insererfigure{./images/structure_trames_CAN.png}{.7}{Structure des trames CAN, source: \cite{exxotest}}{structure_trames_CAN}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.7\textwidth]{./images/structure_trames_CAN.png}
+    \caption{Structure des trames CAN, source: }
+    \label{fig:structure_trames_CAN}
+\end{figure}
 
 \subsubsection*{Donner le nombre d'ID différents présents sur chaque bus identifiés (exports de donnéés depuis le logiciel MuxTrace).}
 
@@ -107,7 +111,6 @@ Certaines versions de la norme OBDII sont énumérées ci-dessous.
     \item L'OBDII est arrivé aux États-Unis en 1996 pour spécifier des protocoles communs. En plus de cela, contrairement à l'OBDI qui est connecté à l'extérieur de la console d'une voiture, l'OBDII est intégré au véhicule.
     \item L'EOBD, pour European OBD, reprenant l'OBDII, est spécifique pour les véhicules européens.
 \end{itemize}
-
     
 \subsubsection*{Reccherche bibliographique sur le web : câblage de connecteur, mode d'échange entre les outils et le véhicle.}
 
@@ -132,13 +135,23 @@ Les informations sont générées par les unités de contrôle du moteur puis so
 
 Dans cette partie, nous allons utiliser le logiciel MuxTrace afin d'analyser les trames circulant dans les bus CAN. Pour cela, nous allons nous interfacer avec les bus I/S, CONF, et CAR grâce à la plaque de branchement de la maquette (voir illustration du branchement, annexe \ref{fig:Tableau_interface}). Les signaux des bus CAN sont ensuite envoyés sur un boîtier USB-MUX-6C6L, avec le CAN CONF sur le port 1, le CAN I/S sur le port 2, et le CAN CAR sur le port 3 (voir illustration annexe \ref{fig:Boitier_usb}). Cela permet, au final, de récupérer les informations des trames sur le logiciel MuxTrace. \pagebreak
 
-Sur le logiciel MuxTrace, nous configurons chaque bus avec le bon débit en utilisant la détection automatique, comme illustré dans la figure \ref{fig:Detection auto débit}.
+Sur le logiciel MuxTrace, nous configurons chaque bus avec le bon débit en utilisant la détection automatique, comme illustré dans la figure \ref{fig:detection_auto_debit}.
 
-\insererfigure{./images/detection_auto_débit.PNG}{.5}{Outil de détection automatique du débit sur le logiciel MuxTrace}{Detection auto débit}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.5\textwidth]{./images/detection_auto_debit.PNG}
+    \caption{Outil de détection automatique du débit sur le logiciel MuxTrace.}
+    \label{fig:detection_auto_debit}
+\end{figure}
 
-Nous pouvons ensuite observer les trames pour les 3 bus CAN sur le logiciel MuxTrace, comme on peut le voir dans la figure \ref{fig:Liste trames bus}.
+Nous pouvons ensuite observer les trames pour les 3 bus CAN sur le logiciel MuxTrace, comme on peut le voir dans la figure \ref{fig:liste_trames_bus}.
 
-\insererfigure{./images/liste_trames_bus.PNG}{1}{Observation des trames sur le logiciel MuxTrace}{Liste trames bus}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{./images/liste_trames_bus.PNG}
+    \caption{Observation des trames sur le logiciel MuxTrace.}
+    \label{fig:liste_trames_bus}
+\end{figure}
 
 % --------------------------------------------------------------------------------------------------------
 % 2.3 Etude practique : régime moteur
@@ -169,7 +182,7 @@ Lorsque nous faisons varier le régime moteur, nous constatons que le premier oc
         5000 & 9B & 155 \\
         \bottomrule
     \end{tabular}
-    \caption{Premier octet de la trame 208 en fonction du régime moteur}
+    \caption{Premier octet de la trame 208 en fonction du régime moteur.}
     \label{tab:regime_moteur_trame_208}
 \end{table}
 \endgroup
@@ -205,7 +218,6 @@ La trame 0x44D a une taille de 8 octets et une fréquence de 40ms
 \subsubsection*{Faites varier la vitesse du véhicle et donnez vos observations sur les champs de données. Par exemple, vous pouvez fair varier la viteese par pas de 10 de 0 à 100Km/h.}
 
 Lorsque nous faisons varier la vitesse du véhicule, nous constatons que le premier, troisième et cinquième octet de la trame 44D varient avec la même valeur. Nous avons reporté dans le tableau \ref{tab:vitesse_vehicule_trame_44D} la valeur obtenue en faisant varier la vitesse par pas de 10km/h de 0km/h à 100km/h.
-
 
 \begingroup
 \begin{table}[H]
@@ -429,7 +441,6 @@ La figure \ref{fig:MuxTrace_dll_default} montre le bon fonctionnement du program
 
 Dans l'Annexe \ref{sec:annexeB} - Code \ref{lst:onevent} se trouve le code original de la fonction OnEvenet chargée de mettre à jour périodiquement les données de chaque trame sur les trois bus comme le montre la figure \ref{fig:MuxTrace_dll_default}.
 
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth]{./images/MuxTrace_dll_running_default_example_number_1_res_indus_31_01_2024_ubs_lorient_M1SESI.png}
@@ -461,31 +472,96 @@ Pour réaliser la logique de la figure \ref{fig:OnCanEvent_UML} la fonction \tex
 
 \section{Conclusion}
 
-\pagebreak
 
-
-\printbibliography
+%\bibliographystyle{unsrt}
+%\bibliography{main.bib} 
 
 % Ajout de l'annexe
-\newpage
-\begin{appendices}
-\section{Annexe A : Illustration complémentaire}
-% Ajout d'une image
-\insererfigure{./images/maquette.jpg}{.7}{Illustration de la maquette EXXOTEST}{maquette_EXXOTEST}
-\insererfigure{./images/potentiomètres_simu.jpg}{.7}{Illustration des potentiomètres et interrupteurs de la partie simulée}{potentiometres}
-\insererfigure{./images/schema_cablage.jpg}{.7}{Schéma du cablage de la maquette}{schema_cablage}
-\insererfigure{./images/OBDII_pins.png}{.7}{Port OBDII}{Port_OBDII}
-\insererfigure{./images/tableau_interface.jpg}{.6}{Illustration des branchements sur la plaque de la maquette}{Tableau_interface}
-\insererfigure{./images/boitier_usb.jpg}{.6}{Illustration du boitier USB-MUX-6C6L}{Boitier_usb}
+
+\appendix
+
+\section{Annexe A : Illustration complémentaire}\label{sec:annexeA}
+
+\subsection{TP1}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.7\textwidth]{./images/maquette.jpg}
+    \caption{Illustration de la maquette EXXOTEST.}
+    \label{fig:maquette_EXXOTEST}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.7\textwidth]{./images/potentiometres_simu.jpg}
+    \caption{Illustration des potentiomètres et interrupteurs de la partie simulée.}
+    \label{fig:potentiometres}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.7\textwidth]{./images/schema_cablage.jpg}
+    \caption{Schéma du cablage de la maquette.}
+    \label{fig:schema_cablage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.7\textwidth]{./images/OBDII_pins.png}
+    \caption{Port OBDII.}
+    \label{fig:Port_OBDII}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.6\textwidth]{./images/tableau_interface.jpg}
+    \caption{Illustration des branchements sur la plaque de la maquette.}
+    \label{fig:tableau_interface}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.6\textwidth]{./images/boitier_usb.jpg}
+    \caption{Illustration du boitier USB-MUX-6C6L.}
+    \label{fig:boitier_usb}
+\end{figure}
+
+\subsection{TP2}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.7\textwidth]{./images/Muxtrace_programmation_configuration_res_indus_31_01_2024_ubs_lorient_M1SESI.png}
+    \caption{Configuration supplémentaire du projet pour ajouter l'archive .dll afin de réaliser le test réel vitesse-volume.}
+    \label{fig:conf_additional_real_limit_vitesse}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.7\textwidth]{./images/test1.png}
+    \caption{Test local avec une vitesse inférieure à 100 km/h. Trame de volume (ID 44D) par défaut 22.}
+    \label{fig:test_local_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.7\textwidth]{./images/test1_2.png}
+    \caption{Essai local avec une vitesse supérieure à 100 km/h, noter le message de débogage et la valeur de la trame 44D (volume) passe de 22 à 26.}
+    \label{fig:test_local_2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.9\textwidth]{./images/Real_Limit_vitesse.png}
+    \caption{Illustration du test vitesse-volume réel}
+    \label{fig:real_limit_vitesse}
+\end{figure}
+
 \pagebreak
 
-\section{Annexe B : Code Snippets}
-\label{sec:annexeB}
+\section{Annexe B : Code Snippets}\label{sec:annexeB}
 
 \lstinputlisting[language=C++, caption={Fonction OnEvent original.}, label={lst:onevent}]{./code_snippets/OnTimer_default.cpp}
 
 \lstinputlisting[language=C++, caption={Fonction OnCanEvent modifie.}, label={lst:oncanevent}]{./code_snippets/OnCanEvent_mod.cpp}
-
-\end{appendices}
 
 \end{document}
