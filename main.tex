@@ -337,7 +337,18 @@ Nous avons reporté les actions réalisées en fonction des 4 premiers bits du p
 
 \subsubsection*{Utiliser le générateur interactif afin d'émettre la trame de commande des rétroviseurs observée précédemment. Vérifiez les trames de commandes observées précédemment en associant des touches de votre clavier pour piloter les rétroviseurs. Vous pouvez faire de même avec les lève-vitres ?}
 
-\dots
+Pour pouvoir utiliser le générateur interactif sur le logiciel MuxTrace, nous devons tout d'abord l'activer pour le bus CAN, comme montré dans la figure \ref{fig:generateur_interactif_activation}.
+
+
+\insererfigure{./images/activer_generateur.PNG}{.7}{Activation du générateur intéractif pour le bus CAN sur MuxTrace}{generateur_interactif_activation}
+
+Nous pouvons ensuite ouvrir le générateur interactif de trames CAN via le menu déroulant "Fenêtres", comme illustré dans la figure \ref{fig:ouvrir_generateur}.
+
+\insererfigure{./images/ouvrir_generateur.png}{.7}{Ouvrir le générateur intéractif de trames CAN sur MuxTrace}{ouvrir_generateur}
+
+Nous avons ensuite créé une trame d'ID 115 avec comme données 82 00 00 00, ce qui correspond à actionner le rétroviseur droit vers la droite. Cette trame est émise sur le bus confort, qui correspond au CAN 3 dans notre cas. De plus, nous avons configuré la touche "U" du clavier pour émettre la trame. La trame créée est illustrée à la figure \ref{fig:generateur_retro_droit}.
+
+\insererfigure{./images/generateur_retro_droit.PNG}{.7}{Trame de contrôle du rétroviseur droit crée dans le générateur intéractif}{generateur_retro_droit}
 
 % --------------------------------------------------------------------------------------------------------
 % 2.5 Etude practique : Faites votre choix
@@ -347,7 +358,7 @@ Nous avons reporté les actions réalisées en fonction des 4 premiers bits du p
 
 \subsubsection*{En fonction de votre avancement dans la séance de TP, vous pouvez exposer une ou deux trames supplémentaires de votre choix sur une ou plusieurs bus de la maquette. De la même manière que précédemment, donnez la taille de données, vos observations sous forme de tableau et justifiez vos analyses.}
 
-\dots
+
 
 % ========================================================================================================
 % 3 Utilisation du logiciel MuxTrace et DBEdit
