@@ -8,7 +8,7 @@
 *.log
 *.nlo
 *.out
-*.pdf
+#*.pdf
 *.run.xml
 *.toc
 
